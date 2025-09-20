@@ -1,0 +1,23 @@
+import { CustomApiOkResponse } from '@/src/contexts/shared/swagger/api-responses-docs'
+import { Serialize } from '@/src/contexts/shared/custom-decorators/serializer'
+import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { Controller, Get } from '@nestjs/common'
+
+import { HealthCheckResponseDto } from './health.dto'
+
+@Controller('health')
+export class HealthController {
+  @ApiTags('Health')
+  @ApiOperation({
+    summary: 'Health Check',
+    description:
+      'Returns the current status and uptime of the service. \n\n' +
+      'Can be used to verify if the service is running properly. \n\n',
+  })
+  @CustomApiOkResponse(HealthCheckResponseDto)
+  @Serialize(HealthCheckResponseDto)
+  @Get()
+  run() {
+    return { status: 'ok', uptime: process.uptime() }
+  }
+}
