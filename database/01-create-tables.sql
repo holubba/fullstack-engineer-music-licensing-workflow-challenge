@@ -25,7 +25,7 @@ CREATE TABLE songs (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   artist_name VARCHAR(255) NOT NULL,
-  duration INTERVAL NOT NULL CHECK (duration > INTERVAL '0'),
+  duration INT NOT NULL CHECK (duration > 0),
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now(),
   deleted_at TIMESTAMP NULL
@@ -36,8 +36,8 @@ CREATE TABLE tracks (
   id SERIAL PRIMARY KEY,
   scene_id INT NOT NULL REFERENCES scenes(id),
   song_id INT NOT NULL REFERENCES songs(id),
-  start_time INTERVAL NOT NULL CHECK (start_time >= INTERVAL '0'),
-  end_time INTERVAL NOT NULL CHECK (end_time > start_time),
+  start_time INT NOT NULL CHECK (start_time >= 0),
+  end_time INT NOT NULL CHECK (end_time > start_time),
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now(),
   deleted_at TIMESTAMP NULL

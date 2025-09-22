@@ -10,13 +10,13 @@ INSERT INTO scenes (movie_id, name) VALUES
 
 -- SONGS
 INSERT INTO songs (name, artist_name, duration) VALUES
-('Time', 'Hans Zimmer', INTERVAL '4 minutes 36 seconds'),
-('Clubbed to Death', 'Rob Dougan', INTERVAL '7 minutes 11 seconds');
+('Time', 'Hans Zimmer', 276),
+('Clubbed to Death', 'Rob Dougan', 431);
 
 -- TRACKS
 INSERT INTO tracks (scene_id, song_id, start_time, end_time) VALUES
-(1, 1, INTERVAL '15 seconds', INTERVAL '1 minute 30 seconds'),
-(2, 2, INTERVAL '1 minute 10 seconds', INTERVAL '3 minutes');
+(1, 1, 15, 90),
+(2, 2, 70, 180);
 
 -- LICENSES
 INSERT INTO licenses (track_id, status, rights_holder, notes) VALUES
