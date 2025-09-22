@@ -7,6 +7,6 @@ export class GetMovieByIdRequestDto {
   @Type(() => Number)
   @IsInt()
   @IsPositive()
-  @ApiProperty({ type: Number, example: 1 })
+  @ApiProperty({ description: 'Movie ID', type: Number, example: 1 })
   id: number
 }

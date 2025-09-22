@@ -6,14 +6,14 @@ import { Observable } from 'rxjs'
 import { PageSerializeDto, PageDto } from '../pagination/page-dto'
 
 export interface ClassContrustor {
-  new (...args: unknown[]): object
+  new(...args: unknown[]): object
 }
 
 export class SerializeInterceptor implements NestInterceptor {
   constructor(
     private dto: ClassContrustor,
     private isPaginated: boolean = false,
-  ) {}
+  ) { }
   intercept(_: ExecutionContext, handler: CallHandler): Observable<unknown> {
     if (this.isPaginated) {
       return handler.handle().pipe(

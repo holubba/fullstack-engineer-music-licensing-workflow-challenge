@@ -12,13 +12,19 @@ export class MoviesRepositoryImpl implements MoviesRepository {
     private readonly moviesRepository: Repository<Movies>,
   ) { }
 
-  async findById(id: number): Promise<Movies> {
-    console.log(id, await this.moviesRepository.count())
-    return {
-      id: 1,
-      name: 'El Camino',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }
+  async findById(id: number): Promise<Movies | null> {
+    return this.moviesRepository.findOne({
+      where: { id },
+      relations: {
+        scenes: {
+          tracks: {
+            song: true,
+            license: {
+              licenseHistory: true,
+            },
+          },
+        },
+      },
+    })
   }
 }
