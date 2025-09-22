@@ -5,7 +5,7 @@ import { r } from './tests/utils/alias'
 export const createVitestTestConfig = () => {
   return {
     name: 'e2e',
-    dir: 'tests/unit',
+    dir: 'tests/e2e',
     hookTimeout: 60_000,
     pool: 'forks',
     minWorkers: 1,
@@ -17,5 +17,16 @@ export const createVitestTestConfig = () => {
     include: ['**/*.test.ts'],
     globals: true,
     env: loadEnv('test', process.cwd(), ''),
+    coverage: {
+      exclude: [
+        './*.ts',
+        './*.mts',
+        'src/app',
+        'src/main.ts',
+        'src/**/infrastructure/http-api/v1/*.module.ts',
+        'src/contexts/shared',
+        'tests',
+      ],
+    },
   }
 }
