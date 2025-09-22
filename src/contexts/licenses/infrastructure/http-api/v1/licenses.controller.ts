@@ -1,3 +1,7 @@
+import { Controller, Param, Body, Sse } from '@nestjs/common'
+import { ApiOperation, ApiResponse } from '@nestjs/swagger'
+import { Observable, Subject, map } from 'rxjs'
+
 import {
   HttpMethods,
   SwaggerDocs,
@@ -5,11 +9,8 @@ import {
 import { Endpoint } from '@/src/app/http-api/decorators/configure-endpoint.decorator'
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { CONTROLLERS } from '@/src/app/constants/controllers'
-import { Controller, Param, Body, Sse } from '@nestjs/common'
-import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 import { Licenses } from '@/src/app/database/entities'
 import { TAGS } from '@/src/app/constants/tags'
-import { Observable, Subject, map } from 'rxjs'
 
 import { UpdateLicenseStatusParamsDto } from './dtos/requests/update-license-params.requests.dto'
 import { UpdateLicenseStatusRequestDto } from './dtos/requests/update-license-status.dto'
@@ -24,7 +25,7 @@ type LicenseStatusEvent = {
 
 @Controller(CONTROLLERS.LICENSES)
 export class LicensesController {
-  constructor(private readonly licenseService: LicensesService) { }
+  constructor(private readonly licenseService: LicensesService) {}
   private licenseStatusChanges$ = new Subject<LicenseStatusEvent>()
 
   @SwaggerDocs({

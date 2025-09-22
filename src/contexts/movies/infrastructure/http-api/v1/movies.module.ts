@@ -7,4 +7,4 @@ import { MoviesController } from './movies.controller'
   imports: [MoviesServiceModule],
   controllers: [MoviesController],
 })
-export class MoviesControllerModule { }
+export class MoviesControllerModule {}

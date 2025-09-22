@@ -9,4 +9,4 @@ import { LicensesService } from './licenses.service'
   providers: [LicensesService],
   exports: [LicensesService],
 })
-export class LicensesServiceModule { }
+export class LicensesServiceModule {}

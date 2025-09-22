@@ -6,8 +6,9 @@ import {
   HttpException,
   Catch,
 } from '@nestjs/common'
-import { ApplicationError } from '@/src/contexts/shared/utils/throw-error'
 import { FastifyReply } from 'fastify'
+
+import { ApplicationError } from '@/src/contexts/shared/utils/throw-error'
 
 @Catch()
 export class ErrorResponseNormalizerFilter implements ExceptionFilter {
@@ -16,6 +17,7 @@ export class ErrorResponseNormalizerFilter implements ExceptionFilter {
 
     const response = ctx.getResponse<FastifyReply>()
 
+    console.log(rawException, 'que pasa')
     const exception =
       rawException instanceof ApplicationError
         ? rawException

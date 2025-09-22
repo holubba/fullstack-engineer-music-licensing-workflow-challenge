@@ -19,4 +19,4 @@ import { HttpApiModule } from './http-api/http-api.module'
     LicensesControllerModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}

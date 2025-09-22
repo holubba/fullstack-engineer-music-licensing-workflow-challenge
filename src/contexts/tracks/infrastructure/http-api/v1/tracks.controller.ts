@@ -1,3 +1,5 @@
+import { Controller, Body } from '@nestjs/common'
+
 import {
   HttpMethods,
   SwaggerDocs,
@@ -5,7 +7,6 @@ import {
 import { Endpoint } from '@/src/app/http-api/decorators/configure-endpoint.decorator'
 import { CONTROLLERS } from '@/src/app/constants/controllers'
 import { Tracks } from '@/src/app/database/entities'
-import { Controller, Body } from '@nestjs/common'
 import { TAGS } from '@/src/app/constants/tags'
 
 import { CreateTrackResponseDto } from './dtos/responses/create-track.response.dto'
@@ -14,7 +15,7 @@ import { TracksService } from '../../../application/tracks-service'
 
 @Controller(CONTROLLERS.TRACKS)
 export class TracksController {
-  constructor(private readonly tracksService: TracksService) { }
+  constructor(private readonly tracksService: TracksService) {}
 
   @SwaggerDocs({
     dataDto: CreateTrackResponseDto,

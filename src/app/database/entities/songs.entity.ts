@@ -6,6 +6,7 @@ import {
   Column,
   Entity,
 } from 'typeorm'
+
 import { PgInterval } from '@/src/contexts/shared/utils/utils'
 
 @Entity('songs')

@@ -1,7 +1,8 @@
-import { LicenseHistory } from '@/src/app/database/entities'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Injectable } from '@nestjs/common'
 import { Repository } from 'typeorm'
+
+import { LicenseHistory } from '@/src/app/database/entities'
 
 import { LicenseHistoryRepository } from '../domain/license-history.repository'
 
@@ -10,7 +11,7 @@ export class LicenseHistoryRepositoryImpl implements LicenseHistoryRepository {
   constructor(
     @InjectRepository(LicenseHistory)
     private readonly licenseHistoryRepository: Repository<LicenseHistory>,
-  ) { }
+  ) {}
   async create(
     licenseHistory: Pick<
       LicenseHistory,

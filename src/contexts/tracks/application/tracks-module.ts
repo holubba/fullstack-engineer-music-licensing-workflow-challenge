@@ -16,4 +16,4 @@ import { TracksService } from './tracks-service'
   providers: [TracksService],
   exports: [TracksService],
 })
-export class TracksServiceModule { }
+export class TracksServiceModule {}

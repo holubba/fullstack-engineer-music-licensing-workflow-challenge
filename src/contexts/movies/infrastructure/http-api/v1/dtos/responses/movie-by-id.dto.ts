@@ -1,8 +1,9 @@
+import { Transform, Expose, Type } from 'class-transformer'
+import { ApiProperty } from '@nestjs/swagger'
+
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { intervalToHHMMSS } from '@/src/contexts/shared/utils/utils'
-import { Transform, Expose, Type } from 'class-transformer'
 import { Tracks, Songs } from '@/src/app/database/entities'
-import { ApiProperty } from '@nestjs/swagger'
 
 class SongDto {
   @Expose()

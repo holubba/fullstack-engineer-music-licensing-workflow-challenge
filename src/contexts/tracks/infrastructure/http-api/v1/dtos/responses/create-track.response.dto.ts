@@ -1,6 +1,7 @@
-import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { Expose, Type } from 'class-transformer'
 import { ApiProperty } from '@nestjs/swagger'
+
+import { LicenseStatus } from '@/src/app/database/entities/types/types'
 
 class LicenseDto {
   @Expose()

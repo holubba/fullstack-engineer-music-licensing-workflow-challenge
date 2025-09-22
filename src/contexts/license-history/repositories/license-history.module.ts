@@ -1,6 +1,7 @@
-import { LicenseHistory } from '@/src/app/database/entities'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Module } from '@nestjs/common'
+
+import { LicenseHistory } from '@/src/app/database/entities'
 
 import { LicenseHistoryRepository } from '../domain/license-history.repository'
 import { LicenseHistoryRepositoryImpl } from './license-history.repository'
@@ -15,4 +16,4 @@ import { LicenseHistoryRepositoryImpl } from './license-history.repository'
   ],
   exports: [LicenseHistoryRepository],
 })
-export class LicenseHistoryRespositoryModule { }
+export class LicenseHistoryRespositoryModule {}

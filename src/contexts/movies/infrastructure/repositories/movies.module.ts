@@ -1,6 +1,7 @@
-import { Movies } from '@/src/app/database/entities'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Module } from '@nestjs/common'
+
+import { Movies } from '@/src/app/database/entities'
 
 import { MoviesRepository } from '../../domain/movies.repository'
 import { MoviesRepositoryImpl } from './movies.repository'
@@ -15,4 +16,4 @@ import { MoviesRepositoryImpl } from './movies.repository'
   ],
   exports: [MoviesRepository],
 })
-export class MoviesRespositoryModule { }
+export class MoviesRespositoryModule {}

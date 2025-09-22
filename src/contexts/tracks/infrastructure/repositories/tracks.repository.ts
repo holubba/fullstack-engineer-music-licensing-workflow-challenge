@@ -1,7 +1,8 @@
-import { Tracks } from '@/src/app/database/entities'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Injectable } from '@nestjs/common'
 import { Repository } from 'typeorm'
+
+import { Tracks } from '@/src/app/database/entities'
 
 import { TracksRepository } from '../../domain/tracks.repository'
 
@@ -10,7 +11,7 @@ export class TracksRepositoryImpl implements TracksRepository {
   constructor(
     @InjectRepository(Tracks)
     private readonly tracksRepository: Repository<Tracks>,
-  ) { }
+  ) {}
 
   async findById(id: number): Promise<Tracks | null> {
     return this.tracksRepository.findOne({

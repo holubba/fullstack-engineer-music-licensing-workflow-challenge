@@ -1,8 +1,9 @@
+import { Transactional } from 'typeorm-transactional'
+import { Injectable, Inject } from '@nestjs/common'
+
 import { APPLICATION_ERRORS } from '@/src/app/http-api/response-normalizer/errors'
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
-import { Transactional } from 'typeorm-transactional'
 import { Tracks } from '@/src/app/database/entities'
-import { Injectable, Inject } from '@nestjs/common'
 
 import {
   validateTrackWithinSong,
@@ -31,7 +32,7 @@ export class TracksService {
     private readonly scenesRepository: ScenesRepositoryImpl,
     @Inject(LicensesRepository)
     private readonly licensesRepository: LicensesRepositoryImpl,
-  ) { }
+  ) {}
 
   @Transactional()
   async create(input: CreateTrackRequestDto): Promise<Tracks> {

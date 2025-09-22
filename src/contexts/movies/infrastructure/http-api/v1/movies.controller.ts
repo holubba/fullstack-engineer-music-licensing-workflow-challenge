@@ -1,3 +1,5 @@
+import { Controller, Param } from '@nestjs/common'
+
 import {
   HttpMethods,
   SwaggerDocs,
@@ -5,7 +7,6 @@ import {
 import { Endpoint } from '@/src/app/http-api/decorators/configure-endpoint.decorator'
 import { CONTROLLERS } from '@/src/app/constants/controllers'
 import { Movies } from '@/src/app/database/entities'
-import { Controller, Param } from '@nestjs/common'
 import { TAGS } from '@/src/app/constants/tags'
 
 import { GetMoviesResponseDto } from './dtos/responses/get-movies.response.dto'
@@ -15,7 +16,7 @@ import { MoviesService } from '../../../application/movies-use-case'
 
 @Controller(CONTROLLERS.MOVIES)
 export class MoviesController {
-  constructor(private readonly moviesService: MoviesService) { }
+  constructor(private readonly moviesService: MoviesService) {}
 
   @SwaggerDocs({
     dataDto: GetMovieByIdResponseDto,
