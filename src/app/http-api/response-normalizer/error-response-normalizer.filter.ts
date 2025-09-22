@@ -6,6 +6,7 @@ import {
   HttpException,
   Catch,
 } from '@nestjs/common'
+import { ApplicationError } from '@/src/contexts/shared/utils/throw-error'
 import { FastifyReply } from 'fastify'
 
 @Catch()
@@ -16,7 +17,7 @@ export class ErrorResponseNormalizerFilter implements ExceptionFilter {
     const response = ctx.getResponse<FastifyReply>()
 
     const exception =
-      rawException instanceof HttpException
+      rawException instanceof ApplicationError
         ? rawException
         : new InternalServerErrorException()
 
@@ -25,7 +26,7 @@ export class ErrorResponseNormalizerFilter implements ExceptionFilter {
     await response.status(status).send({ error: this.mapToError(exception) })
   }
 
-  private mapToError(error: HttpException) {
+  private mapToError(error: HttpException | ApplicationError) {
     return {
       message: error.message,
       status: error.getStatus(),
@@ -33,7 +34,7 @@ export class ErrorResponseNormalizerFilter implements ExceptionFilter {
     }
   }
 
-  private getReasons(error: HttpException) {
+  private getReasons(error: HttpException | ApplicationError) {
     if (!(error instanceof BadRequestException)) {
       return
     }
