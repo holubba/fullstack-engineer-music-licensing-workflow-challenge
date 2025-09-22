@@ -10,7 +10,7 @@ import {
 import { LicenseStatus } from './types/types'
 import { Licenses } from './licenses.entity'
 
-@Entity('license-history')
+@Entity('license_history')
 export class LicenseHistory {
   @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
   id: number

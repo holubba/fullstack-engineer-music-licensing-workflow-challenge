@@ -1,6 +1,6 @@
 export enum LicenseStatus {
   PENDING = 'pending',
-  NEGOCIATING = 'published',
+  NEGOCIATING = 'negotiating',
   APPROVED = 'approved',
   REJECTED = 'rejected',
 }

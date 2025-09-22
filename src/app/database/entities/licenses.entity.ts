@@ -4,11 +4,13 @@ import {
   DeleteDateColumn,
   UpdateDateColumn,
   JoinColumn,
-  ManyToOne,
+  OneToMany,
+  OneToOne,
   Column,
   Entity,
 } from 'typeorm'
 
+import { LicenseHistory } from './license-history.entity'
 import { LicenseStatus } from './types/types'
 import { Tracks } from './tracks.entity'
 
@@ -41,7 +43,10 @@ export class Licenses {
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt?: Date | null
 
-  @ManyToOne(() => Tracks)
+  @OneToOne(() => Tracks)
   @JoinColumn({ name: 'track_id' })
   track: Tracks
+
+  @OneToMany(() => LicenseHistory, lh => lh.license)
+  licenseHistory: LicenseHistory[]
 }

@@ -3,9 +3,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   UpdateDateColumn,
+  OneToMany,
   Column,
   Entity,
 } from 'typeorm'
+
+import { Scenes } from './scenes.entity'
 
 @Entity('movies')
 export class Movies {
@@ -23,4 +26,7 @@ export class Movies {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt?: Date | null
+
+  @OneToMany(() => Scenes, scene => scene.movie)
+  scenes: Scenes[]
 }

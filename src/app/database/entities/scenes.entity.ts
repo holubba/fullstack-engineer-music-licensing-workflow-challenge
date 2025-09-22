@@ -5,29 +5,24 @@ import {
   UpdateDateColumn,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   Column,
   Entity,
 } from 'typeorm'
 
 import { Movies } from './movies.entity'
+import { Tracks } from './tracks.entity'
 
 @Entity('scenes')
 export class Scenes {
   @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
   id: number
 
+  @Column({ type: 'varchar', length: 255 })
+  name: string
+
   @Column({ type: 'int', unsigned: true, name: 'movie_id' })
   movieId: number
-
-  @Column({ type: 'varchar', length: 255, name: 'start_time' })
-  startTime: string
-
-  // TODO: define time format
-  @Column({ type: 'varchar', length: 255, name: 'end_time' })
-  endTime: string
-
-  @Column({ name: 'start_date', type: 'date' })
-  startDate: Date
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date
@@ -41,4 +36,7 @@ export class Scenes {
   @ManyToOne(() => Movies)
   @JoinColumn({ name: 'movie_id' })
   movie: Movies
+
+  @OneToMany(() => Tracks, track => track.scene)
+  tracks: Tracks[]
 }

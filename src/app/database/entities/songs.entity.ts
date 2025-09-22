@@ -6,6 +6,7 @@ import {
   Column,
   Entity,
 } from 'typeorm'
+import { PgInterval } from '@/src/contexts/shared/utils/utils'
 
 @Entity('songs')
 export class Songs {
@@ -18,8 +19,8 @@ export class Songs {
   @Column({ type: 'varchar', length: 255, name: 'artist_name' })
   artistName: number
 
-  @Column({ type: 'text', nullable: true })
-  duration: string | null
+  @Column({ type: 'interval', nullable: false })
+  duration: PgInterval
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date

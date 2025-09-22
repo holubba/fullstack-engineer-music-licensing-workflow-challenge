@@ -5,10 +5,13 @@ import {
   UpdateDateColumn,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   Column,
   Entity,
 } from 'typeorm'
+import { PgInterval } from '@/src/contexts/shared/utils/utils'
 
+import { Licenses } from './licenses.entity'
 import { Scenes } from './scenes.entity'
 import { Songs } from './songs.entity'
 
@@ -23,12 +26,11 @@ export class Tracks {
   @Column({ type: 'int', unsigned: true, name: 'song_id' })
   songId: number
 
-  @Column({ type: 'varchar', length: 255, name: 'start_time' })
-  startTime: string
+  @Column({ type: 'interval', name: 'start_time' })
+  startTime: PgInterval
 
-  // TODO: define time format
-  @Column({ type: 'varchar', length: 255, name: 'end_time' })
-  endTime: string
+  @Column({ type: 'interval', name: 'end_time' })
+  endTime: PgInterval
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date
@@ -46,4 +48,7 @@ export class Tracks {
   @ManyToOne(() => Songs)
   @JoinColumn({ name: 'song_id' })
   song: Songs
+
+  @OneToOne(() => Licenses, license => license.track)
+  license: Licenses
 }
