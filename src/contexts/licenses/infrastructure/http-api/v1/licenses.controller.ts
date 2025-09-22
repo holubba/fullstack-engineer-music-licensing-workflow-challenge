@@ -84,7 +84,7 @@ export class LicensesController {
               type: 'object',
               properties: {
                 licenseId: { type: 'integer', example: 1 },
-                newStatus: { type: 'string', example: 'APPROVED' },
+                newStatus: { type: 'string', example: LicenseStatus.APPROVED },
                 updatedAt: { type: 'string', format: 'date-time' },
               },
             },
