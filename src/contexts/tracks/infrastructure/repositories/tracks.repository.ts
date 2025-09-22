@@ -13,15 +13,6 @@ export class TracksRepositoryImpl implements TracksRepository {
     private readonly tracksRepository: Repository<Tracks>,
   ) {}
 
-  async findById(id: number): Promise<Tracks | null> {
-    return this.tracksRepository.findOne({
-      where: { id },
-      relations: {
-        license: true,
-      },
-    })
-  }
-
   async findByIdOrFail(id: number): Promise<Tracks> {
     return this.tracksRepository.findOneOrFail({
       where: { id },

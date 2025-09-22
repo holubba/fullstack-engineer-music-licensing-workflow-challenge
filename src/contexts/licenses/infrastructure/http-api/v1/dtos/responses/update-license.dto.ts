@@ -2,7 +2,7 @@ import { Transform, Expose, Type } from 'class-transformer'
 import { ApiProperty } from '@nestjs/swagger'
 
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
-import { intervalToHHMMSS } from '@/src/contexts/shared/utils/utils'
+import { secondsToHHMMSS } from '@/src/contexts/shared/utils/utils'
 import { Tracks, Songs } from '@/src/app/database/entities'
 
 class SongDto {
@@ -24,7 +24,7 @@ class SongDto {
     example: '00:04:36',
     required: false,
   })
-  @Transform(({ obj }: { obj: Songs }) => intervalToHHMMSS({ ...obj.duration }))
+  @Transform(({ obj }: { obj: Songs }) => secondsToHHMMSS(obj.duration))
   duration: string
 }
 
@@ -45,14 +45,12 @@ class TrackDto {
 
   @Expose()
   @ApiProperty({ description: 'Track start time', example: '00:00:15' })
-  @Transform(({ obj }: { obj: Tracks }) =>
-    intervalToHHMMSS({ ...obj.startTime }),
-  )
+  @Transform(({ obj }: { obj: Tracks }) => secondsToHHMMSS(obj.startTime))
   startTime: string
 
   @Expose()
   @ApiProperty({ description: 'Track end time', example: '00:01:30' })
-  @Transform(({ obj }: { obj: Tracks }) => intervalToHHMMSS({ ...obj.endTime }))
+  @Transform(({ obj }: { obj: Tracks }) => secondsToHHMMSS(obj.endTime))
   endTime: string
 
   @Expose()

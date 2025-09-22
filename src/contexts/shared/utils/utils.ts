@@ -1,5 +1,3 @@
-import { ValueTransformer } from 'typeorm'
-
 import { APPLICATION_ERRORS } from '@/src/app/http-api/response-normalizer/errors'
 
 import { throwError } from './throw-error'
@@ -8,50 +6,6 @@ export type PgInterval = {
   hours: number
   minutes: number
   seconds: number
-}
-
-/**
- * Converts an interval object into an `HH:MM:SS` string.
- *
- * @param interval - Interval object with hours, minutes, and seconds.
- * @returns A string formatted as `HH:MM:SS`.
- *
- * @example
- * intervalToHHMMSS({ hours: 1, minutes: 5, seconds: 7 }) // "01:05:07"
- */
-export function intervalToHHMMSS(interval: {
-  hours: number
-  minutes: number
-  seconds: number
-}) {
-  const h = String(interval.hours || 0).padStart(2, '0')
-  const m = String(interval.minutes || 0).padStart(2, '0')
-  const s = String(Math.floor(interval.seconds) || 0).padStart(2, '0')
-  return `${h}:${m}:${s}`
-}
-
-/**
- * Converts a `HH:MM:SS` string into an interval object.
- *
- * @param hhmmss - A string formatted as `HH:MM:SS`.
- * @returns An interval object with hours, minutes, and seconds.
- * @throws Will throw an error if the format is invalid.
- *
- * @example
- * hhmmssToInterval("01:05:07") // { hours: 1, minutes: 5, seconds: 7 }
- */
-export function hhmmssToInterval(hhmmss: string): PgInterval {
-  const [h, m, s] = hhmmss.split(':').map(Number)
-
-  if ([h, m, s].some(n => Number.isNaN(n) || n < 0) || m > 59 || s > 59) {
-    throwError(APPLICATION_ERRORS.TRACKS.WRONG_TIME_FORMAT)
-  }
-
-  return {
-    hours: h,
-    minutes: m,
-    seconds: s,
-  }
 }
 
 /**
@@ -67,11 +21,40 @@ export function hhmmssToInterval(hhmmss: string): PgInterval {
 export function hhmmssToSeconds(hhmmss: string): number {
   const [h, m, s] = hhmmss.split(':').map(Number)
 
-  if ([h, m, s].some(n => Number.isNaN(n) || n < 0) || m > 59 || s > 59) {
+  if (
+    [h, m, s].some(n => Number.isNaN(n) || n < 0 || n === undefined) ||
+    m > 59 ||
+    s > 59
+  ) {
     throwError(APPLICATION_ERRORS.TRACKS.WRONG_TIME_FORMAT)
   }
 
   return h * 3600 + m * 60 + s
+}
+
+/**
+ * Converts a total number of seconds into a `HH:MM:SS` string.
+ *
+ * @param totalSeconds - The total number of seconds to convert.
+ * @returns A string formatted as `HH:MM:SS`.
+ *
+ * @example
+ * secondsToHHMMSS(3907) // "01:05:07"
+ */
+export function secondsToHHMMSS(totalSeconds: number): string {
+  if (totalSeconds < 0) {
+    throwError(APPLICATION_ERRORS.TRACKS.WRONG_TIME_FORMAT)
+  }
+
+  const hours = Math.floor(totalSeconds / 3600)
+  const minutes = Math.floor((totalSeconds % 3600) / 60)
+  const seconds = totalSeconds % 60
+
+  const hh = String(hours).padStart(2, '0')
+  const mm = String(minutes).padStart(2, '0')
+  const ss = String(seconds).padStart(2, '0')
+
+  return `${hh}:${mm}:${ss}`
 }
 
 /**
@@ -106,22 +89,4 @@ export function validateTrackWithinSong(
   }
 
   return true
-}
-
-/**
- * TypeORM ValueTransformer for PostgreSQL interval fields.
- *
- * - `to`: Converts an interval object to `HH:MM:SS` string before saving to DB.
- * - `from`: Converts the DB value back into `HH:MM:SS` string (keeps consistency).
- *
- * @example
- * // Entity usage
- * @Column({ type: 'interval', transformer: IntervalTransformer })
- * startTime: PgInterval;
- */
-export const IntervalTransformer: ValueTransformer = {
-  to: (value: { hours: number; minutes: number; seconds: number }) =>
-    value ? intervalToHHMMSS(value) : null,
-  from: (value: { hours: number; minutes: number; seconds: number }) =>
-    value ? intervalToHHMMSS(value) : null,
 }

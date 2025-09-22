@@ -31,7 +31,7 @@ export class Licenses {
   @Column({ type: 'varchar', length: 255, name: 'rights_holder' })
   rightsHolder: string
 
-  @Column({ type: 'text', name: 'notes' })
+  @Column({ type: 'text', name: 'notes', nullable: true })
   notes?: string | null
 
   @CreateDateColumn({ name: 'created_at' })

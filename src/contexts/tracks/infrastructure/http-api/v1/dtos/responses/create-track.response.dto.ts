@@ -1,7 +1,9 @@
-import { Expose, Type } from 'class-transformer'
+import { Transform, Expose, Type } from 'class-transformer'
 import { ApiProperty } from '@nestjs/swagger'
 
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
+import { secondsToHHMMSS } from '@/src/contexts/shared/utils/utils'
+import { Tracks } from '@/src/app/database/entities'
 
 class LicenseDto {
   @Expose()
@@ -46,6 +48,7 @@ export class CreateTrackResponseDto {
     description: 'Start time of the track (HH:MM:SS)',
     example: '00:00:15',
   })
+  @Transform(({ obj }: { obj: Tracks }) => secondsToHHMMSS(obj.startTime))
   startTime: string
 
   @Expose()
@@ -53,6 +56,7 @@ export class CreateTrackResponseDto {
     description: 'End time of the track (HH:MM:SS)',
     example: '00:01:30',
   })
+  @Transform(({ obj }: { obj: Tracks }) => secondsToHHMMSS(obj.endTime))
   endTime: string
 
   @Expose()

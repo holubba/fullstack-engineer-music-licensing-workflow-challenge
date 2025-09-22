@@ -7,21 +7,22 @@ import {
   Entity,
 } from 'typeorm'
 
-import { PgInterval } from '@/src/contexts/shared/utils/utils'
-
 @Entity('songs')
 export class Songs {
   @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
   id: number
 
   @Column({ type: 'varchar', length: 255, name: 'name' })
-  name: number
+  name: string
 
   @Column({ type: 'varchar', length: 255, name: 'artist_name' })
-  artistName: number
+  artistName: string
 
-  @Column({ type: 'interval', nullable: false })
-  duration: PgInterval
+  @Column({
+    type: 'int',
+    nullable: false,
+  })
+  duration: number
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date

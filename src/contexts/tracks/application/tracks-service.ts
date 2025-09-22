@@ -5,12 +5,12 @@ import { APPLICATION_ERRORS } from '@/src/app/http-api/response-normalizer/error
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { Tracks } from '@/src/app/database/entities'
 
+import { CreateTrackRequestDto } from '../infrastructure/http-api/v1/dtos/requests/create-track.request.dto'
 import {
   validateTrackWithinSong,
-  hhmmssToInterval,
-  intervalToHHMMSS,
+  secondsToHHMMSS,
+  hhmmssToSeconds,
 } from '../../shared/utils/utils'
-import { CreateTrackRequestDto } from '../infrastructure/http-api/v1/dtos/requests/create-track.request.dto'
 import { LicensesRepositoryImpl } from '../../licenses/infrastructure/repositories/licenses.repository'
 import { ScenesRepositoryImpl } from '../../scenes/infrastructure/repositories/scenes.repository'
 import { SongsRepositoryImpl } from '../../songs/infrastructure/repositories/songs.repository'
@@ -49,13 +49,13 @@ export class TracksService {
     validateTrackWithinSong(
       input.startTime,
       input.endTime,
-      intervalToHHMMSS(song.duration),
+      secondsToHHMMSS(song.duration),
     )
 
     const newTrack = await this.tracksRepository.insert({
       ...input,
-      startTime: hhmmssToInterval(input.startTime),
-      endTime: hhmmssToInterval(input.endTime),
+      startTime: hhmmssToSeconds(input.startTime),
+      endTime: hhmmssToSeconds(input.endTime),
     })
 
     await this.licensesRepository.create({

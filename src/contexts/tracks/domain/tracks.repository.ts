@@ -5,5 +5,4 @@ export abstract class TracksRepository {
     track: Pick<Tracks, 'sceneId' | 'songId' | 'startTime' | 'endTime'>,
   ): Promise<Tracks | null>
   abstract findByIdOrFail(id: number): Promise<Tracks>
-  abstract findById(id: number): Promise<Tracks | null>
 }

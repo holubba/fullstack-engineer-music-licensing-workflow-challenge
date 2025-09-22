@@ -10,11 +10,6 @@ import {
   Entity,
 } from 'typeorm'
 
-import {
-  IntervalTransformer,
-  PgInterval,
-} from '@/src/contexts/shared/utils/utils'
-
 import { Licenses } from './licenses.entity'
 import { Scenes } from './scenes.entity'
 import { Songs } from './songs.entity'
@@ -31,18 +26,16 @@ export class Tracks {
   songId: number
 
   @Column({
-    type: 'interval',
+    type: 'int',
     name: 'start_time',
-    transformer: IntervalTransformer,
   })
-  startTime: PgInterval
+  startTime: number
 
   @Column({
-    type: 'interval',
+    type: 'int',
     name: 'end_time',
-    transformer: IntervalTransformer,
   })
-  endTime: PgInterval
+  endTime: number
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date

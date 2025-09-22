@@ -17,7 +17,6 @@ export class ErrorResponseNormalizerFilter implements ExceptionFilter {
 
     const response = ctx.getResponse<FastifyReply>()
 
-    console.log(rawException, 'que pasa')
     const exception =
       rawException instanceof ApplicationError
         ? rawException

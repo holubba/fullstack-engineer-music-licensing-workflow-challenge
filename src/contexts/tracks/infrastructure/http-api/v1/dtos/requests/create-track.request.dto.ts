@@ -50,5 +50,5 @@ export class CreateTrackRequestDto {
     example: 'The CEO wants this ASAP.',
     required: false,
   })
-  notes: string
+  notes?: string
 }
