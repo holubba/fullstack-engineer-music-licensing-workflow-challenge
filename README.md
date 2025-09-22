@@ -34,13 +34,13 @@ Tests are made following some guidelines seen in: <https://github.com/goldbergyo
 
 - **Backend:** You can use any stack you're comfortable with, but we recommend using any of the following:
 
--[x] TypeScript + NestJS (you can use Fastify or Koa if you prefer)
--[] Python + FastAPI (you can use Flask or Django if you prefer)
--[] Go + Fiber (you can use Gin or Echo if you prefer)
+  - [x] TypeScript + NestJS (you can use Fastify or Koa if you prefer)
+  - [ ] Python + FastAPI (you can use Flask or Django if you prefer)
+  - [ ] Go + Fiber (you can use Gin or Echo if you prefer)
 
 - **Containerization:**
 
--[x] Docker (required)
+  - [x] Docker (required)
 
 ---
 
@@ -51,9 +51,16 @@ Tests are made following some guidelines seen in: <https://github.com/goldbergyo
 
   - Movies, scenes, tracks, songs, and their licensing states.
 
-- Endpoints or queries/mutations to: -[x] Create a track and associate a song. -[x] Update the licensing state of a track. -[x] Query all tracks for a given scene/movie, including licensing status.
+- Endpoints or queries/mutations to: 
+  - [x] Create a track and associate a song. 
+  - [x] Update the licensing state of a track. 
+  - [x] Query all tracks for a given scene/movie, including licensing status.
 
--[x] Suggest a real-time implementation using WebSockets, GraphQL Subscriptions, or Server-Sent Events. -[x] Docker setup to run the entire app locally. -[x] A `README.md` with: -[x] Setup instructions -[x] Tech decisions and tradeoffs -[x] If applicable, your reasoning for using REST, GraphQL, or both
+- [x] Suggest a real-time implementation using WebSockets, GraphQL Subscriptions, or Server-Sent Events. -[x] Docker setup to run the entire app locally. 
+- [x] A `README.md` with:
+  - [x] Setup instructions 
+  - [x] Tech decisions and tradeoffs 
+  - [x] If applicable, your reasoning for using REST, GraphQL, or both
 
 ---
 
