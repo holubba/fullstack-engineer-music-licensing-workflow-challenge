@@ -2,7 +2,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { INestApplication } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
-const SWAGGER_NAME = 'Movies Track License App'
+const SWAGGER_NAME = 'NanLabs Challenge - Songs License Tracker'
 const SWAGGER_ROOT = 'docs'
 
 export const setupSwagger = (app: INestApplication) => {
