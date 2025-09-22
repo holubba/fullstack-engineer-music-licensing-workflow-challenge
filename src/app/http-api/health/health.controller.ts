@@ -3,9 +3,10 @@ import { Serialize } from '@/src/contexts/shared/custom-decorators/serializer'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { Controller, Get } from '@nestjs/common'
 
+import { CONTROLLERS } from '../../constants/controllers'
 import { HealthCheckResponseDto } from './health.dto'
 
-@Controller('health')
+@Controller(CONTROLLERS.HEALTH)
 export class HealthController {
   @ApiTags('Health')
   @ApiOperation({

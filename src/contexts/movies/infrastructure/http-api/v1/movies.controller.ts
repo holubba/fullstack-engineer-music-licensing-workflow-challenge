@@ -3,6 +3,7 @@ import {
   SwaggerDocs,
 } from '@/src/contexts/shared/swagger/api-responses-docs'
 import { Endpoint } from '@/src/app/http-api/decorators/configure-endpoint.decorator'
+import { CONTROLLERS } from '@/src/app/constants/controllers'
 import { Movies } from '@/src/app/database/entities'
 import { Controller, Param } from '@nestjs/common'
 
@@ -10,7 +11,7 @@ import { GetMovieByIdRequestDto } from './dtos/requests/get-movie-by-id.dto'
 import { GetMovieByIdResponseDto } from './dtos/responses/movie-by-id.dto'
 import { MoviesService } from '../../../application/movies-use-case'
 
-@Controller('movies')
+@Controller(CONTROLLERS.MOVIES)
 export class MoviesController {
   constructor(private readonly moviesUseCase: MoviesService) { }
 
