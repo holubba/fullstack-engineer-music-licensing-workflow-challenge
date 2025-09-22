@@ -23,7 +23,7 @@ export const createVitestTestConfig = () => {
         './*.mts',
         'src/app',
         'src/main.ts',
-        'src/**/infrastructure/http-api/v1/*.module.ts',
+        'src/**/infrastructure/controllers/*.module.ts',
         'src/contexts/shared',
         'tests',
       ],

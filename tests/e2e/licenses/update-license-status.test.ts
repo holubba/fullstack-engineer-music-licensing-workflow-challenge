@@ -5,11 +5,11 @@ import { validateSync } from 'class-validator'
 import { ConfigModule } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
-import { UpdateLicenseStatusParamsDto } from '@/src/contexts/licenses/infrastructure/http-api/v1/dtos/requests/update-license-params.requests.dto'
-import { UpdateLicenseStatusRequestDto } from '@/src/contexts/licenses/infrastructure/http-api/v1/dtos/requests/update-license-status.dto'
-import { UpdateLicenseByIdResponseDto } from '@/src/contexts/licenses/infrastructure/http-api/v1/dtos/responses/update-license.dto'
+import { UpdateLicenseStatusParamsDto } from '@/src/contexts/licenses/infrastructure/controllers/dtos/requests/update-license-params.requests.dto'
+import { UpdateLicenseStatusRequestDto } from '@/src/contexts/licenses/infrastructure/controllers/dtos/requests/update-license-status.dto'
+import { UpdateLicenseByIdResponseDto } from '@/src/contexts/licenses/infrastructure/controllers/dtos/responses/update-license.dto'
 import { LicensesRespositoryModule } from '@/src/contexts/licenses/infrastructure/repositories/licenses.module'
-import { LicensesController } from '@/src/contexts/licenses/infrastructure/http-api/v1/licenses.controller'
+import { LicensesController } from '@/src/contexts/licenses/infrastructure/controllers/licenses.controller'
 import {
   TestTypeOrmConfigModule,
   testDto,

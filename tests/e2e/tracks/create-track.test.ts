@@ -5,10 +5,10 @@ import { validateSync } from 'class-validator'
 import { ConfigModule } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
-import { CreateTrackResponseDto } from '@/src/contexts/tracks/infrastructure/http-api/v1/dtos/responses/create-track.response.dto'
-import { CreateTrackRequestDto } from '@/src/contexts/tracks/infrastructure/http-api/v1/dtos/requests/create-track.request.dto'
+import { CreateTrackResponseDto } from '@/src/contexts/tracks/infrastructure/controllers/dtos/responses/create-track.response.dto'
+import { CreateTrackRequestDto } from '@/src/contexts/tracks/infrastructure/controllers/dtos/requests/create-track.request.dto'
 import { TracksRespositoryModule } from '@/src/contexts/tracks/infrastructure/repositories/tracks.module'
-import { TracksController } from '@/src/contexts/tracks/infrastructure/http-api/v1/tracks.controller'
+import { TracksController } from '@/src/contexts/tracks/infrastructure/controllers/tracks.controller'
 import {
   TestTypeOrmConfigModule,
   testDto,

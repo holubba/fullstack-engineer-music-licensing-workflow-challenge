@@ -15,7 +15,7 @@ import { TAGS } from '@/src/app/constants/tags'
 import { UpdateLicenseStatusParamsDto } from './dtos/requests/update-license-params.requests.dto'
 import { UpdateLicenseStatusRequestDto } from './dtos/requests/update-license-status.dto'
 import { UpdateLicenseByIdResponseDto } from './dtos/responses/update-license.dto'
-import { LicensesService } from '../../../application/licenses.service'
+import { LicensesService } from '../../application/licenses.service'
 
 type LicenseStatusEvent = {
   licenseId: number
@@ -25,7 +25,7 @@ type LicenseStatusEvent = {
 
 @Controller(CONTROLLERS.LICENSES)
 export class LicensesController {
-  constructor(private readonly licenseService: LicensesService) {}
+  constructor(private readonly licenseService: LicensesService) { }
   private licenseStatusChanges$ = new Subject<LicenseStatusEvent>()
 
   @SwaggerDocs({

@@ -5,10 +5,10 @@ import { validateSync } from 'class-validator'
 import { ConfigModule } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
-import { GetMovieByIdRequestDto } from '@/src/contexts/movies/infrastructure/http-api/v1/dtos/requests/get-movie-by-id.dto'
-import { GetMovieByIdResponseDto } from '@/src/contexts/movies/infrastructure/http-api/v1/dtos/responses/movie-by-id.dto'
+import { GetMovieByIdRequestDto } from '@/src/contexts/movies/infrastructure/controllers/dtos/requests/get-movie-by-id.dto'
+import { GetMovieByIdResponseDto } from '@/src/contexts/movies/infrastructure/controllers/dtos/responses/movie-by-id.dto'
 import { MoviesRespositoryModule } from '@/src/contexts/movies/infrastructure/repositories/movies.module'
-import { MoviesController } from '@/src/contexts/movies/infrastructure/http-api/v1/movies.controller'
+import { MoviesController } from '@/src/contexts/movies/infrastructure/controllers/movies.controller'
 import {
   TestTypeOrmConfigModule,
   testDto,

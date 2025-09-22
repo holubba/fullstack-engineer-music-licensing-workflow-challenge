@@ -16,6 +16,7 @@ export const setupSwagger = (app: INestApplication) => {
   })
   SwaggerModule.setup(SWAGGER_ROOT, app, document, {
     customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'NanLabs Challenge',
     swaggerOptions: {
       operationsSorter: 'method',
       persistAuthorization: true,

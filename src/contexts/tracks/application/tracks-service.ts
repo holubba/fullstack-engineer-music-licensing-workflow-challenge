@@ -5,7 +5,7 @@ import { APPLICATION_ERRORS } from '@/src/app/http-api/response-normalizer/error
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { Tracks } from '@/src/app/database/entities'
 
-import { CreateTrackRequestDto } from '../infrastructure/http-api/v1/dtos/requests/create-track.request.dto'
+import { CreateTrackRequestDto } from '../infrastructure/controllers/dtos/requests/create-track.request.dto'
 import {
   validateTrackWithinSong,
   secondsToHHMMSS,
@@ -32,7 +32,7 @@ export class TracksService {
     private readonly scenesRepository: ScenesRepositoryImpl,
     @Inject(LicensesRepository)
     private readonly licensesRepository: LicensesRepositoryImpl,
-  ) {}
+  ) { }
 
   @Transactional()
   async create(input: CreateTrackRequestDto): Promise<Tracks> {

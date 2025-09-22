@@ -12,11 +12,11 @@ import { TAGS } from '@/src/app/constants/tags'
 import { GetMoviesResponseDto } from './dtos/responses/get-movies.response.dto'
 import { GetMovieByIdRequestDto } from './dtos/requests/get-movie-by-id.dto'
 import { GetMovieByIdResponseDto } from './dtos/responses/movie-by-id.dto'
-import { MoviesService } from '../../../application/movies-use-case'
+import { MoviesService } from '../../application/movies.service'
 
 @Controller(CONTROLLERS.MOVIES)
 export class MoviesController {
-  constructor(private readonly moviesService: MoviesService) {}
+  constructor(private readonly moviesService: MoviesService) { }
 
   @SwaggerDocs({
     dataDto: GetMovieByIdResponseDto,

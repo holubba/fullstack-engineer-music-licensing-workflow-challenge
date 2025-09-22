@@ -11,11 +11,11 @@ import { TAGS } from '@/src/app/constants/tags'
 
 import { CreateTrackResponseDto } from './dtos/responses/create-track.response.dto'
 import { CreateTrackRequestDto } from './dtos/requests/create-track.request.dto'
-import { TracksService } from '../../../application/tracks-service'
+import { TracksService } from '../../application/tracks-service'
 
 @Controller(CONTROLLERS.TRACKS)
 export class TracksController {
-  constructor(private readonly tracksService: TracksService) {}
+  constructor(private readonly tracksService: TracksService) { }
 
   @SwaggerDocs({
     dataDto: CreateTrackResponseDto,

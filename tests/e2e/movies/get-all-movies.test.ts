@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigModule } from '@nestjs/config'
 import { DataSource, In } from 'typeorm'
 
-import { GetMoviesResponseDto } from '@/src/contexts/movies/infrastructure/http-api/v1/dtos/responses/get-movies.response.dto'
+import { GetMoviesResponseDto } from '@/src/contexts/movies/infrastructure/controllers/dtos/responses/get-movies.response.dto'
 import {
   TestTypeOrmConfigModule,
   testPaginatedDto,
@@ -11,7 +11,7 @@ import {
   mockDB,
 } from '@/tests/utils/vitest-helpers'
 import { MoviesRespositoryModule } from '@/src/contexts/movies/infrastructure/repositories/movies.module'
-import { MoviesController } from '@/src/contexts/movies/infrastructure/http-api/v1/movies.controller'
+import { MoviesController } from '@/src/contexts/movies/infrastructure/controllers/movies.controller'
 import { MoviesServiceModule } from '@/src/contexts/movies/application/movies.module'
 import { Movies } from '@/src/app/database/entities'
 import { seedDb } from '@/tests/utils/seed'
