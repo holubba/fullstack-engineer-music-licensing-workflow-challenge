@@ -17,10 +17,15 @@ export class ErrorResponseNormalizerFilter implements ExceptionFilter {
 
     const response = ctx.getResponse<FastifyReply>()
 
-    const exception =
-      rawException instanceof ApplicationError
-        ? rawException
-        : new InternalServerErrorException()
+    let exception: HttpException | ApplicationError
+    if (
+      rawException instanceof ApplicationError ||
+      rawException instanceof HttpException
+    ) {
+      exception = rawException
+    } else {
+      exception = new InternalServerErrorException()
+    }
 
     const status = exception.getStatus()
 
