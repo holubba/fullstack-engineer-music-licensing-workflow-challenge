@@ -6,21 +6,23 @@ import { Endpoint } from '@/src/app/http-api/decorators/configure-endpoint.decor
 import { CONTROLLERS } from '@/src/app/constants/controllers'
 import { Movies } from '@/src/app/database/entities'
 import { Controller, Param } from '@nestjs/common'
+import { TAGS } from '@/src/app/constants/tags'
 
+import { GetMoviesResponseDto } from './dtos/responses/get-movies.response.dto'
 import { GetMovieByIdRequestDto } from './dtos/requests/get-movie-by-id.dto'
 import { GetMovieByIdResponseDto } from './dtos/responses/movie-by-id.dto'
 import { MoviesService } from '../../../application/movies-use-case'
 
 @Controller(CONTROLLERS.MOVIES)
 export class MoviesController {
-  constructor(private readonly moviesUseCase: MoviesService) { }
+  constructor(private readonly moviesService: MoviesService) { }
 
   @SwaggerDocs({
     dataDto: GetMovieByIdResponseDto,
     isPaginated: false,
     httpMethod: HttpMethods.get,
-    errorResponseCodes: [400, 401, 403, 404],
-    tags: 'Movies',
+    errorResponseCodes: [400, 404],
+    tags: TAGS.MOVIES,
     description:
       'Retrieves a movie by its unique identifier. \n\n' +
       'This endpoint returns the complete details of the specified movie. \n\n' +
@@ -34,6 +36,25 @@ export class MoviesController {
     path: ':id',
   })
   async getMovieById(@Param() { id }: GetMovieByIdRequestDto): Promise<Movies> {
-    return await this.moviesUseCase.findById({ id })
+    return await this.moviesService.findById({ id })
+  }
+
+  @SwaggerDocs({
+    dataDto: GetMoviesResponseDto,
+    isPaginated: true,
+    httpMethod: HttpMethods.get,
+    errorResponseCodes: [],
+    tags: TAGS.MOVIES,
+    description:
+      'Retrieves all movies. \n\n' +
+      'This should be paginated but due to the time constraints of the challenge and it not being enforced in the description I left it like this',
+    summary: 'Retrieves all movies',
+  })
+  @Endpoint({
+    responseDto: GetMoviesResponseDto,
+    operation: HttpMethods.get,
+  })
+  async getMovies(): Promise<Movies[]> {
+    return await this.moviesService.findAll()
   }
 }

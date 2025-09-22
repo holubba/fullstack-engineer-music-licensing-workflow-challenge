@@ -27,4 +27,17 @@ export class MoviesRepositoryImpl implements MoviesRepository {
       },
     })
   }
+
+  async findAll(): Promise<Movies[]> {
+    return await this.moviesRepository.find({
+      relations: {
+        scenes: {
+          tracks: {
+            song: true,
+            license: true,
+          },
+        },
+      },
+    })
+  }
 }

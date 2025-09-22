@@ -21,4 +21,8 @@ export class MoviesService {
     }
     return movie
   }
+
+  async findAll(): Promise<Movies[]> {
+    return await this.moviesRepository.findAll()
+  }
 }
