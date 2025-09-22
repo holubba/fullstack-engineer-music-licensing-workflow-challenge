@@ -2,6 +2,7 @@ import { ConfigModule } from '@nestjs/config'
 import { Module } from '@nestjs/common'
 
 import { MoviesControllerModule } from '../contexts/movies/infrastructure/http-api/v1/movies.module'
+import { TracksControllerModule } from '../contexts/tracks/infrastructure/http-api/v1/tracks.module'
 import { EnvironmentConfigModule } from './environment-config/environment-config.module'
 import { TypeOrmConfigModule } from './database/typeorm.module'
 import { HttpApiModule } from './http-api/http-api.module'
@@ -13,6 +14,7 @@ import { HttpApiModule } from './http-api/http-api.module'
     EnvironmentConfigModule,
     TypeOrmConfigModule,
     MoviesControllerModule,
+    TracksControllerModule,
   ],
 })
 export class AppModule { }

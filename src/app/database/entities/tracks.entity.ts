@@ -9,7 +9,10 @@ import {
   Column,
   Entity,
 } from 'typeorm'
-import { PgInterval } from '@/src/contexts/shared/utils/utils'
+import {
+  IntervalTransformer,
+  PgInterval,
+} from '@/src/contexts/shared/utils/utils'
 
 import { Licenses } from './licenses.entity'
 import { Scenes } from './scenes.entity'
@@ -26,10 +29,18 @@ export class Tracks {
   @Column({ type: 'int', unsigned: true, name: 'song_id' })
   songId: number
 
-  @Column({ type: 'interval', name: 'start_time' })
+  @Column({
+    type: 'interval',
+    name: 'start_time',
+    transformer: IntervalTransformer,
+  })
   startTime: PgInterval
 
-  @Column({ type: 'interval', name: 'end_time' })
+  @Column({
+    type: 'interval',
+    name: 'end_time',
+    transformer: IntervalTransformer,
+  })
   endTime: PgInterval
 
   @CreateDateColumn({ name: 'created_at' })

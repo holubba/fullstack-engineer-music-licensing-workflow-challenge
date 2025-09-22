@@ -1,0 +1,69 @@
+import { APPLICATION_ERRORS } from '@/src/app/http-api/response-normalizer/errors'
+import { LicenseStatus } from '@/src/app/database/entities/types/types'
+import { Transactional } from 'typeorm-transactional'
+import { Tracks } from '@/src/app/database/entities'
+import { Injectable, Inject } from '@nestjs/common'
+
+import {
+  validateTrackWithinSong,
+  hhmmssToInterval,
+  intervalToHHMMSS,
+} from '../../shared/utils/utils'
+import { CreateTrackRequestDto } from '../infrastructure/http-api/v1/dtos/requests/create-track.request.dto'
+import { LicensesRepositoryImpl } from '../../licenses/infrastructure/repositories/licenses.repository'
+import { ScenesRepositoryImpl } from '../../scenes/infrastructure/repositories/scenes.repository'
+import { SongsRepositoryImpl } from '../../songs/infrastructure/repositories/songs.repository'
+import { TracksRepositoryImpl } from '../infrastructure/repositories/tracks.repository'
+import { LicensesRepository } from '../../licenses/domain/licenses.repository'
+import { ScenesRepository } from '../../scenes/domain/scenes.repository'
+import { SongsRepository } from '../../songs/domain/songs.repository'
+import { TracksRepository } from '../domain/tracks.repository'
+import { throwError } from '../../shared/utils/throw-error'
+
+@Injectable()
+export class TracksService {
+  constructor(
+    @Inject(TracksRepository)
+    private readonly tracksRepository: TracksRepositoryImpl,
+    @Inject(SongsRepository)
+    private readonly songsRepository: SongsRepositoryImpl,
+    @Inject(ScenesRepository)
+    private readonly scenesRepository: ScenesRepositoryImpl,
+    @Inject(LicensesRepository)
+    private readonly licensesRepository: LicensesRepositoryImpl,
+  ) { }
+
+  @Transactional()
+  async create(input: CreateTrackRequestDto): Promise<Tracks> {
+    const song = await this.songsRepository.findById(input.songId)
+    if (!song) {
+      throwError(APPLICATION_ERRORS.SONGS.NOT_FOUND_ERROR)
+    }
+
+    const scene = await this.scenesRepository.findById(input.sceneId)
+    if (!scene) {
+      throwError(APPLICATION_ERRORS.SCENES.NOT_FOUND_ERROR)
+    }
+
+    validateTrackWithinSong(
+      input.startTime,
+      input.endTime,
+      intervalToHHMMSS(song.duration),
+    )
+
+    const newTrack = await this.tracksRepository.insert({
+      ...input,
+      startTime: hhmmssToInterval(input.startTime),
+      endTime: hhmmssToInterval(input.endTime),
+    })
+
+    await this.licensesRepository.create({
+      trackId: newTrack.id,
+      status: LicenseStatus.PENDING,
+      rightsHolder: input.rightsHolder,
+      notes: input.notes,
+    })
+
+    return await this.tracksRepository.findByIdOrFail(newTrack.id)
+  }
+}

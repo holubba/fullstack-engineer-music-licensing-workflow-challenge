@@ -5,6 +5,33 @@ export const APPLICATION_ERRORS = {
       statusCode: 404,
     },
   },
+  SONGS: {
+    NOT_FOUND_ERROR: {
+      message: 'The song with the specified ID was not found in the database.',
+      statusCode: 404,
+    },
+  },
+  SCENES: {
+    NOT_FOUND_ERROR: {
+      message: 'The scene with the specified ID was not found in the database.',
+      statusCode: 404,
+    },
+  },
+  TRACKS: {
+    WRONG_TIME_FORMAT: {
+      message: 'The time fields have to be in HH:MM:SS format.',
+      statusCode: 400,
+    },
+    INVALID_TRACK_TIMES: {
+      message: 'Invalid track: end time must be after start time',
+      statusCode: 400,
+    },
+    TRACK_EXCEEDS_SONG_DURATION: {
+      message: `Track exceeds song duration.`,
+
+      statusCode: 400,
+    },
+  },
   GENERIC: {
     SERVER_ERROR: {
       message: 'Internal Server Error',
