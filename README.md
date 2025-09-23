@@ -22,6 +22,8 @@ docker-compose up -d --build
 
 ### Running test suite
 
+- Install dependencies first (`npm i`) if you haven't.
+
 ```bash
 npm run test:e2e
 ```
@@ -33,13 +35,11 @@ Tests are made following some guidelines seen in: <https://github.com/goldbergyo
 ## Tech Requirements
 
 - **Backend:** You can use any stack you're comfortable with, but we recommend using any of the following:
-
   - [x] TypeScript + NestJS (you can use Fastify or Koa if you prefer)
   - [ ] Python + FastAPI (you can use Flask or Django if you prefer)
   - [ ] Go + Fiber (you can use Gin or Echo if you prefer)
 
 - **Containerization:**
-
   - [x] Docker (required)
 
 ---
@@ -48,18 +48,17 @@ Tests are made following some guidelines seen in: <https://github.com/goldbergyo
 
 - [x] A **backend** exposing the required APIs.
 - [x] A **data model** to manage:
-
   - Movies, scenes, tracks, songs, and their licensing states.
 
-- Endpoints or queries/mutations to: 
-  - [x] Create a track and associate a song. 
-  - [x] Update the licensing state of a track. 
+- Endpoints or queries/mutations to:
+  - [x] Create a track and associate a song.
+  - [x] Update the licensing state of a track.
   - [x] Query all tracks for a given scene/movie, including licensing status.
 
-- [x] Suggest a real-time implementation using WebSockets, GraphQL Subscriptions, or Server-Sent Events. -[x] Docker setup to run the entire app locally. 
+- [x] Suggest a real-time implementation using WebSockets, GraphQL Subscriptions, or Server-Sent Events. -[x] Docker setup to run the entire app locally.
 - [x] A `README.md` with:
-  - [x] Setup instructions 
-  - [x] Tech decisions and tradeoffs 
+  - [x] Setup instructions
+  - [x] Tech decisions and tradeoffs
   - [x] If applicable, your reasoning for using REST, GraphQL, or both
 
 ---
