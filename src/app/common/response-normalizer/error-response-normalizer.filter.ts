@@ -8,7 +8,8 @@ import {
 } from '@nestjs/common'
 import { FastifyReply } from 'fastify'
 
-import { ApplicationError } from '@/src/contexts/shared/utils/throw-error'
+import { ApplicationError } from '@/src/shared/utils/throw-error'
+
 
 @Catch()
 export class ErrorResponseNormalizerFilter implements ExceptionFilter {

@@ -2,12 +2,10 @@ import { Controller, Param, Body, Sse } from '@nestjs/common'
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 import { Observable, Subject, map } from 'rxjs'
 
-import {
-  HttpMethods,
-  SwaggerDocs,
-} from '@/src/contexts/shared/swagger/api-responses-docs'
-import { Endpoint } from '@/src/contexts/shared/custom-decorators/configure-endpoint.decorator'
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
+import { SwaggerDocs } from '@/src/shared/decorators/swagger.decorator'
+import { Endpoint } from '@/src/shared/decorators/endpoint.decorator'
+import { HttpMethods } from '@/src/shared/swagger/api-responses-docs'
 import { CONTROLLERS } from '@/src/app/constants/api.constants'
 import { TAGS } from '@/src/app/constants/docs.contants'
 

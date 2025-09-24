@@ -10,7 +10,8 @@ import {
 } from '@nestjs/common'
 import { ClassConstructor } from 'class-transformer'
 
-import { SerializeInterceptor } from '@/src/contexts/shared/serializer/serializer'
+import { SerializeInterceptor } from '../serializer/serializer'
+
 
 interface CustomDecoratorOptions {
   operation: 'post' | 'get' | 'put' | 'delete' | 'patch'

@@ -1,10 +1,8 @@
 import { Controller, Param } from '@nestjs/common'
 
-import {
-  HttpMethods,
-  SwaggerDocs,
-} from '@/src/contexts/shared/swagger/api-responses-docs'
-import { Endpoint } from '@/src/contexts/shared/custom-decorators/configure-endpoint.decorator'
+import { SwaggerDocs } from '@/src/shared/decorators/swagger.decorator'
+import { Endpoint } from '@/src/shared/decorators/endpoint.decorator'
+import { HttpMethods } from '@/src/shared/swagger/api-responses-docs'
 import { CONTROLLERS } from '@/src/app/constants/api.constants'
 import { TAGS } from '@/src/app/constants/docs.contants'
 

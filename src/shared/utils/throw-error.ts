@@ -17,7 +17,7 @@ export function throwError(errorPayload: ApplicationErrorPayload): never {
  * Extends the native Error class to include an HTTP status code.
  */
 export class ApplicationError extends Error {
-  public statusCode: number
+  private statusCode: number
 
   /**
    * @param {ApplicationErrorPayload} payload - The payload containing the error message and status code.
