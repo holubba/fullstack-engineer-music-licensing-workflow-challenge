@@ -1,8 +1,4 @@
 import {
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  DeleteDateColumn,
-  UpdateDateColumn,
   JoinColumn,
   OneToMany,
   OneToOne,
@@ -11,15 +7,13 @@ import {
 } from 'typeorm'
 
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
+import { BaseEntity } from '@/src/app/database/entities/base.entity'
 
 import { LicenseHistory } from '../../license-history/domain/license-history.entity'
 import { Tracks } from '../../tracks/domain/tracks.entity'
 
 @Entity('licenses')
-export class Licenses {
-  @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
-  id: number
-
+export class Licenses extends BaseEntity {
   @Column({ type: 'int', unsigned: true, name: 'track_id' })
   trackId: number
 
@@ -34,15 +28,6 @@ export class Licenses {
 
   @Column({ type: 'text', name: 'notes', nullable: true })
   notes?: string | null
-
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date
-
-  @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date
-
-  @DeleteDateColumn({ name: 'deleted_at' })
-  deletedAt?: Date | null
 
   @OneToOne(() => Tracks)
   @JoinColumn({ name: 'track_id' })

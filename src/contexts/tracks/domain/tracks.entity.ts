@@ -1,8 +1,4 @@
 import {
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  DeleteDateColumn,
-  UpdateDateColumn,
   JoinColumn,
   ManyToOne,
   OneToOne,
@@ -10,15 +6,14 @@ import {
   Entity,
 } from 'typeorm'
 
+import { BaseEntity } from '@/src/app/database/entities/base.entity'
+
 import { Licenses } from '../../licenses/domain/licenses.entity'
 import { Scenes } from '../../scenes/domain/scenes.entity'
 import { Songs } from '../../songs/domain/songs.entity'
 
 @Entity('tracks')
-export class Tracks {
-  @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
-  id: number
-
+export class Tracks extends BaseEntity {
   @Column({ type: 'int', unsigned: true, name: 'scene_id' })
   sceneId: number
 
@@ -36,15 +31,6 @@ export class Tracks {
     name: 'end_time',
   })
   endTime: number
-
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date
-
-  @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date
-
-  @DeleteDateColumn({ name: 'deleted_at' })
-  deletedAt?: Date | null
 
   @ManyToOne(() => Scenes)
   @JoinColumn({ name: 'scene_id' })
