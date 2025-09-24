@@ -10,8 +10,8 @@
   "scripts": {
     "build": "npm run build:clean && nest build --path tsconfig.prod.json",
     "start": "node dist/main.js",
-    "test:e2e": "vitest run --coverage --config ./vitest.config.ts",
-    "test:e2e-silent": "vitest run --config ./vitest.config.ts",
+    "test:e2e": "vitest run --coverage --config ./tests/vitest.config.ts",
+    "test:e2e-silent": "vitest run --config ./tests/vitest.config.ts",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "npm run lint -- --fix",
     "build:clean": "rimraf dist; exit 0"

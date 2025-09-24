@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config'
 import swc from 'unplugin-swc'
 
 import { createVitestTestConfig } from './create-vitest-config'
-import { alias } from './tests/utils/alias'
+import { alias } from './utils/alias'
 
 export default defineConfig({
   test: createVitestTestConfig(),

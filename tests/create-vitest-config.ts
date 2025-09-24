@@ -1,6 +1,7 @@
 import { loadEnv } from 'vite'
 
-import { r } from './tests/utils/alias'
+import { r } from './utils/alias'
+
 
 export const createVitestTestConfig = () => {
   return {
