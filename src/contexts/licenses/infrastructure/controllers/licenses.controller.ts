@@ -1,6 +1,6 @@
 import { Controller, Param, Body, Sse } from '@nestjs/common'
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
-import { Observable, Subject, map } from 'rxjs'
+import { Observable } from 'rxjs'
 
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { SwaggerDocs } from '@/src/shared/decorators/swagger.decorator'
@@ -13,18 +13,13 @@ import { UpdateLicenseStatusParamsDto } from './dtos/requests/update-license-par
 import { UpdateLicenseStatusRequestDto } from './dtos/requests/update-license-status.dto'
 import { UpdateLicenseByIdResponseDto } from './dtos/responses/update-license.dto'
 import { LicensesService } from '../../application/licenses.service'
+import { LicenseStatusEvent } from '../../domain/licenses.types'
 import { Licenses } from '../../domain/licenses.entity'
 
-type LicenseStatusEvent = {
-  licenseId: number
-  newStatus: LicenseStatus
-  updatedAt: Date
-}
 
 @Controller(CONTROLLERS.LICENSES)
 export class LicensesController {
   constructor(private readonly licenseService: LicensesService) { }
-  private licenseStatusChanges$ = new Subject<LicenseStatusEvent>()
 
   @SwaggerDocs({
     dataDto: UpdateLicenseByIdResponseDto,
@@ -50,15 +45,7 @@ export class LicensesController {
     @Param() { id }: UpdateLicenseStatusParamsDto,
     @Body() { status }: UpdateLicenseStatusRequestDto,
   ): Promise<Licenses> {
-    const updatedLicense = await this.licenseService.update({ id, status })
-
-    this.licenseStatusChanges$.next({
-      licenseId: updatedLicense.id,
-      newStatus: updatedLicense.status,
-      updatedAt: updatedLicense.updatedAt,
-    })
-
-    return updatedLicense
+    return await this.licenseService.update({ id, status })
   }
 
   @Sse('status/stream')
@@ -93,8 +80,6 @@ export class LicensesController {
     },
   })
   licenseStatusStream(): Observable<{ data: LicenseStatusEvent }> {
-    return this.licenseStatusChanges$
-      .asObservable()
-      .pipe(map(event => ({ data: event })))
+    return this.licenseService.licenseStatusStream()
   }
 }

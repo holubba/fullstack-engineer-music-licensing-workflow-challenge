@@ -1,20 +1,27 @@
 import { Transactional } from 'typeorm-transactional'
 import { Injectable, Inject } from '@nestjs/common'
+import { Subject } from 'rxjs/internal/Subject'
+import { Observable, map } from 'rxjs'
 
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
 
 import { LicenseHistoryRepository } from '../../license-history/domain/license-history.repository.interface'
 import { LicensesRepository } from '../domain/licenses.repository.interface'
+import { LicenseStatusEvent } from '../domain/licenses.types'
 import { Licenses } from '../domain/licenses.entity'
+
 
 @Injectable()
 export class LicensesService {
+  private licenseStatusChanges$ = new Subject<LicenseStatusEvent>()
+
   constructor(
     @Inject(LicensesRepository)
     private readonly licensesRepository: LicensesRepository,
     @Inject(LicenseHistoryRepository)
     private readonly licenseHistoryRepository: LicenseHistoryRepository,
   ) { }
+
 
   @Transactional()
   async update(input: {
@@ -31,6 +38,20 @@ export class LicensesService {
       newStatus: input.status,
     })
 
-    return await this.licensesRepository.findOneByIdOrFail(input.id)
+    const updatedLicense = await this.licensesRepository.findOneByIdOrFail(input.id)
+
+    this.licenseStatusChanges$.next({
+      licenseId: updatedLicense.id,
+      newStatus: updatedLicense.status,
+      updatedAt: updatedLicense.updatedAt,
+    })
+
+    return updatedLicense
+  }
+
+  licenseStatusStream(): Observable<{ data: LicenseStatusEvent }> {
+    return this.licenseStatusChanges$
+      .asObservable()
+      .pipe(map(event => ({ data: event })))
   }
 }

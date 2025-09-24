@@ -1,4 +1,5 @@
 import {
+  ApiInternalServerErrorResponse,
   ApiUnauthorizedResponse,
   ApiBadRequestResponse,
   ApiForbiddenResponse,
@@ -174,7 +175,7 @@ export const buildResponseCodeExamples = (
       }
       case ResponseCodes.ServerError: {
         decorators.push(
-          ApiNotFoundResponse({
+          ApiInternalServerErrorResponse({
             description: 'Internal server error',
             example: {
               error: {
