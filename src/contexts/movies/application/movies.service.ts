@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common'
 
-import { APPLICATION_ERRORS } from '@/src/app/http-api/response-normalizer/errors'
+import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
 
 import { GetMovieByIdRequestDto } from '../infrastructure/controllers/dtos/requests/get-movie-by-id.dto'
 import { MoviesRepositoryImpl } from '../infrastructure/repositories/movies.repository'

@@ -4,14 +4,14 @@ import { Module } from '@nestjs/common'
 import { LicensesControllerModule } from '../contexts/licenses/infrastructure/controllers/licenses.module'
 import { MoviesControllerModule } from '../contexts/movies/infrastructure/controllers/movies.module'
 import { TracksControllerModule } from '../contexts/tracks/infrastructure/controllers/tracks.module'
+import { ResponseNormalizerModule } from './common/response-normalizer/response-normalizer.module'
 import { EnvironmentConfigModule } from './environment-config/environment-config.module'
 import { TypeOrmConfigModule } from './database/typeorm.module'
 import { HealthModule } from '../contexts/health/health.module'
-import { HttpApiModule } from './http-api/http-api.module'
 
 @Module({
   imports: [
-    HttpApiModule,
+    ResponseNormalizerModule,
     ConfigModule.forRoot({ isGlobal: true, cache: true }),
     EnvironmentConfigModule,
     TypeOrmConfigModule,

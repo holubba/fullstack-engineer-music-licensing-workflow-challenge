@@ -15,7 +15,7 @@ import {
   mockDB,
 } from '@/tests/utils/vitest-helpers'
 import { TracksServiceModule } from '@/src/contexts/tracks/application/tracks-module'
-import { APPLICATION_ERRORS } from '@/src/app/http-api/response-normalizer/errors'
+import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
 import { seedDb } from '@/tests/utils/seed'
 
 describe('POST: Create Track', () => {

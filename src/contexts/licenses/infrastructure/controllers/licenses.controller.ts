@@ -6,7 +6,7 @@ import {
   HttpMethods,
   SwaggerDocs,
 } from '@/src/contexts/shared/swagger/api-responses-docs'
-import { Endpoint } from '@/src/app/http-api/decorators/configure-endpoint.decorator'
+import { Endpoint } from '@/src/contexts/shared/custom-decorators/configure-endpoint.decorator'
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { CONTROLLERS } from '@/src/app/constants/controllers'
 import { TAGS } from '@/src/app/constants/tags'

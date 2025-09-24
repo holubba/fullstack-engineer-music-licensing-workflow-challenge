@@ -1,4 +1,4 @@
-import { APPLICATION_ERRORS } from '@/src/app/http-api/response-normalizer/errors'
+import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
 
 import { throwError } from './throw-error'
 

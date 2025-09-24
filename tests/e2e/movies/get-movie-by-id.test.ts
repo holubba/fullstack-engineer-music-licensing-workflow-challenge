@@ -15,7 +15,7 @@ import {
   mockDB,
 } from '@/tests/utils/vitest-helpers'
 import { MoviesServiceModule } from '@/src/contexts/movies/application/movies.module'
-import { APPLICATION_ERRORS } from '@/src/app/http-api/response-normalizer/errors'
+import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
 import { seedDb } from '@/tests/utils/seed'
 
 describe('GET/:id Movie', () => {

@@ -1,7 +1,7 @@
 import { Transactional } from 'typeorm-transactional'
 import { Injectable, Inject } from '@nestjs/common'
 
-import { APPLICATION_ERRORS } from '@/src/app/http-api/response-normalizer/errors'
+import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
 
 import { CreateTrackRequestDto } from '../infrastructure/controllers/dtos/requests/create-track.request.dto'
