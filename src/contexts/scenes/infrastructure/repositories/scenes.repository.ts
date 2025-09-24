@@ -10,11 +10,19 @@ export class ScenesRepositoryImpl implements ScenesRepository {
   constructor(
     @InjectRepository(Scenes)
     private readonly scenesRespository: Repository<Scenes>,
-  ) {}
-
+  ) { }
   async findById(id: number): Promise<Scenes | null> {
-    return this.scenesRespository.findOne({
+    return await this.scenesRespository.findOne({
       where: { id },
     })
+  }
+
+  async save(
+    input: Omit<
+      Scenes,
+      'id' | 'createdAt' | 'updatedAt' | 'deletedAt' | 'movie' | 'tracks'
+    >,
+  ): Promise<Scenes> {
+    return await this.scenesRespository.save(input)
   }
 }

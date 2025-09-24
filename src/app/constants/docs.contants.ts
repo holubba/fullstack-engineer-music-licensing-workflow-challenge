@@ -3,4 +3,5 @@ export const TAGS = {
   TRACKS: 'Tracks',
   LICENSES: 'Licenses',
   HEALTH: 'Health',
+  SCENES: 'Scenes',
 }

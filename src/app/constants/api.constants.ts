@@ -3,6 +3,7 @@ export const CONTROLLERS = {
   TRACKS: 'tracks',
   LICENSES: 'licenses',
   HEALTH: 'health',
+  SCENES: 'scenes',
 }
 
 export const API = 'api'
