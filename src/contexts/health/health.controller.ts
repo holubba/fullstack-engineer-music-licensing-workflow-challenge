@@ -3,8 +3,8 @@ import { Controller, Get } from '@nestjs/common'
 
 import { CustomApiOkResponse } from '@/src/contexts/shared/swagger/api-responses-docs'
 import { Serialize } from '@/src/contexts/shared/custom-decorators/serializer'
-import { CONTROLLERS } from '@/src/app/constants/controllers'
-import { TAGS } from '@/src/app/constants/tags'
+import { CONTROLLERS } from '@/src/app/constants/api.constants'
+import { TAGS } from '@/src/app/constants/docs.contants'
 
 import { HealthCheckResponseDto } from './health.dto'
 

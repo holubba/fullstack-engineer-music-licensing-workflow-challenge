@@ -3,8 +3,8 @@ import { addTransactionalDataSource } from 'typeorm-transactional'
 import { DataSourceOptions, DataSource } from 'typeorm'
 import { Module } from '@nestjs/common'
 
-import { EnvironmentConfigService } from '../environment-config/environment-config.service'
-import { EnvironmentConfigModule } from '../environment-config/environment-config.module'
+import { EnvironmentConfigService } from '../common/environment-config/environment-config.service'
+import { EnvironmentConfigModule } from '../common/environment-config/environment-config.module'
 import { getEntities } from '../setup/get-entities'
 
 export async function dataSourceFactory(
@@ -43,4 +43,4 @@ export const getTypeOrmModuleOptions = (
     }),
   ],
 })
-export class TypeOrmConfigModule {}
+export class TypeOrmConfigModule { }

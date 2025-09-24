@@ -8,8 +8,8 @@ import {
 } from '@/src/contexts/shared/swagger/api-responses-docs'
 import { Endpoint } from '@/src/contexts/shared/custom-decorators/configure-endpoint.decorator'
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
-import { CONTROLLERS } from '@/src/app/constants/controllers'
-import { TAGS } from '@/src/app/constants/tags'
+import { CONTROLLERS } from '@/src/app/constants/api.constants'
+import { TAGS } from '@/src/app/constants/docs.contants'
 
 import { UpdateLicenseStatusParamsDto } from './dtos/requests/update-license-params.requests.dto'
 import { UpdateLicenseStatusRequestDto } from './dtos/requests/update-license-status.dto'

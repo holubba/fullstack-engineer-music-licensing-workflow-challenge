@@ -1,6 +1,7 @@
 import { INestApplication } from '@nestjs/common'
 
-import { API } from '../constants/routes'
+import { API } from '../constants/api.constants'
+
 
 
 export const setupPrefix = (app: INestApplication) => {

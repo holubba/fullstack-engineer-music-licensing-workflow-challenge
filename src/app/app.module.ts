@@ -5,7 +5,7 @@ import { LicensesControllerModule } from '../contexts/licenses/infrastructure/co
 import { MoviesControllerModule } from '../contexts/movies/infrastructure/controllers/movies.module'
 import { TracksControllerModule } from '../contexts/tracks/infrastructure/controllers/tracks.module'
 import { ResponseNormalizerModule } from './common/response-normalizer/response-normalizer.module'
-import { EnvironmentConfigModule } from './environment-config/environment-config.module'
+import { EnvironmentConfigModule } from './common/environment-config/environment-config.module'
 import { TypeOrmConfigModule } from './database/typeorm.module'
 import { HealthModule } from '../contexts/health/health.module'
 

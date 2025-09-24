@@ -14,6 +14,7 @@ import {
   setupPipes,
   setupCORS,
 } from './app/setup'
+import { NODE_ENVIRONMENTS, HOST } from './app/constants/api.constants'
 import { AppModule } from './app/app.module'
 
 async function bootstrap() {
@@ -31,11 +32,11 @@ async function bootstrap() {
   setupPipes(app)
 
   const { port, nodeEnv } = getEnvVariables(app)
-  if (nodeEnv !== 'production') {
+  if (nodeEnv !== NODE_ENVIRONMENTS.PROD) {
     setupSwagger(app)
   }
 
-  await app.listen(port, '0.0.0.0')
+  await app.listen(port, HOST)
 
   console.info(`App is ready and listening on port ${port} 🚀`)
 }

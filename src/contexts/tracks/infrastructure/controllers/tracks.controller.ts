@@ -5,8 +5,8 @@ import {
   SwaggerDocs,
 } from '@/src/contexts/shared/swagger/api-responses-docs'
 import { Endpoint } from '@/src/contexts/shared/custom-decorators/configure-endpoint.decorator'
-import { CONTROLLERS } from '@/src/app/constants/controllers'
-import { TAGS } from '@/src/app/constants/tags'
+import { CONTROLLERS } from '@/src/app/constants/api.constants'
+import { TAGS } from '@/src/app/constants/docs.contants'
 
 import { CreateTrackResponseDto } from './dtos/responses/create-track.response.dto'
 import { CreateTrackRequestDto } from './dtos/requests/create-track.request.dto'
