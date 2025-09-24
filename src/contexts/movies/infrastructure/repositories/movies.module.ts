@@ -1,7 +1,7 @@
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Module } from '@nestjs/common'
 
-import { MoviesRepository } from '../../domain/movies.repository'
+import { MoviesRepository } from '../../domain/movies.repository.interface'
 import { MoviesRepositoryImpl } from './movies.repository'
 import { Movies } from '../../domain/movies.entity'
 

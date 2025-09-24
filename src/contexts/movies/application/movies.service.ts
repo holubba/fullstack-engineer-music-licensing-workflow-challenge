@@ -3,7 +3,7 @@ import { Injectable, Inject } from '@nestjs/common'
 import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
 
 import { GetMovieByIdRequestDto } from '../infrastructure/controllers/dtos/requests/get-movie-by-id.dto'
-import { MoviesRepository } from '../domain/movies.repository'
+import { MoviesRepository } from '../domain/movies.repository.interface'
 import { throwError } from '../../shared/utils/throw-error'
 import { Movies } from '../domain/movies.entity'
 

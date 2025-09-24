@@ -2,7 +2,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Injectable } from '@nestjs/common'
 import { Repository } from 'typeorm'
 
-import { LicenseHistoryRepository } from '../domain/license-history.repository'
+import { LicenseHistoryRepository } from '../domain/license-history.repository.interface'
 import { LicenseHistory } from '../domain/license-history.entity'
 
 @Injectable()

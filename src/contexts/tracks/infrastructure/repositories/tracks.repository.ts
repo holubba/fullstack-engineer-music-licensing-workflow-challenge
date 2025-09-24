@@ -2,7 +2,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Injectable } from '@nestjs/common'
 import { Repository } from 'typeorm'
 
-import { TracksRepository } from '../../domain/tracks.repository'
+import { TracksRepository } from '../../domain/tracks.repository.interface'
 import { Tracks } from '../../domain/tracks.entity'
 
 @Injectable()

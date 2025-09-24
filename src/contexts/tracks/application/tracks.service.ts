@@ -10,10 +10,10 @@ import {
   secondsToHHMMSS,
   hhmmssToSeconds,
 } from '../../shared/utils/utils'
-import { LicensesRepository } from '../../licenses/domain/licenses.repository'
-import { ScenesRepository } from '../../scenes/domain/scenes.repository'
-import { SongsRepository } from '../../songs/domain/songs.repository'
-import { TracksRepository } from '../domain/tracks.repository'
+import { LicensesRepository } from '../../licenses/domain/licenses.repository.interface'
+import { ScenesRepository } from '../../scenes/domain/scenes.repository.interface'
+import { SongsRepository } from '../../songs/domain/songs.repository.interface'
+import { TracksRepository } from '../domain/tracks.repository.interface'
 import { throwError } from '../../shared/utils/throw-error'
 import { Tracks } from '../domain/tracks.entity'
 
