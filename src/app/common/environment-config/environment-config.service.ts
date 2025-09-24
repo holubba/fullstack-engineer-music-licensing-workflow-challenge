@@ -1,10 +1,10 @@
 import { ConfigService } from '@nestjs/config'
+import { Injectable } from '@nestjs/common'
 
-import { Injectable } from '@/shared/dependency-injection/injectable'
 
 @Injectable()
 export class EnvironmentConfigService {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(private readonly configService: ConfigService) { }
   getDatabaseHost(): string {
     return this.configService.getOrThrow<string>('POSTGRES_HOST')
   }

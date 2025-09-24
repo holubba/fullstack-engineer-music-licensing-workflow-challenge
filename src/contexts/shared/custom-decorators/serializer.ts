@@ -1,7 +1,7 @@
 import { UseInterceptors } from '@nestjs/common'
 
-import { SerializeInterceptor, ClassContrustor } from '../serializer/serializer'
+import { SerializeInterceptor, ClassConstructor } from '../serializer/serializer'
 
-export function Serialize(dto: ClassContrustor) {
+export function Serialize(dto: ClassConstructor) {
   return UseInterceptors(new SerializeInterceptor(dto))
 }

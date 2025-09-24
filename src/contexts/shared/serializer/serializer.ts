@@ -5,15 +5,33 @@ import { Observable } from 'rxjs'
 
 import { PageSerializeDto, PageDto } from '../pagination/page-dto'
 
-export interface ClassContrustor {
-  new (...args: unknown[]): object
+/**
+ * Constructor type for a class.
+ */
+export interface ClassConstructor {
+  new(...args: unknown[]): object
 }
 
+/**
+ * Interceptor that serializes outgoing responses using a DTO.
+ * Can handle single objects or paginated results.
+ */
 export class SerializeInterceptor implements NestInterceptor {
+  /**
+   * @param dto - The DTO class to serialize data into.
+   * @param isPaginated - Whether the response is a paginated result.
+   */
   constructor(
-    private dto: ClassContrustor,
+    private dto: ClassConstructor,
     private isPaginated: boolean = false,
-  ) {}
+  ) { }
+
+  /**
+   * Intercepts the response and transforms it using the provided DTO.
+   * @param _ - Execution context (not used).
+   * @param handler - Call handler for the request.
+   * @returns Observable with transformed data.
+   */
   intercept(_: ExecutionContext, handler: CallHandler): Observable<unknown> {
     if (this.isPaginated) {
       return handler.handle().pipe(
@@ -36,7 +54,7 @@ export class SerializeInterceptor implements NestInterceptor {
     }
 
     return handler.handle().pipe(
-      map((data: ClassContrustor) => {
+      map((data: ClassConstructor) => {
         return plainToInstance(this.dto, data, {
           excludeExtraneousValues: true,
           exposeUnsetFields: false,
