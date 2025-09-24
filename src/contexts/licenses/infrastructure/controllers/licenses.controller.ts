@@ -9,13 +9,13 @@ import {
 import { Endpoint } from '@/src/app/http-api/decorators/configure-endpoint.decorator'
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { CONTROLLERS } from '@/src/app/constants/controllers'
-import { Licenses } from '@/src/app/database/entities'
 import { TAGS } from '@/src/app/constants/tags'
 
 import { UpdateLicenseStatusParamsDto } from './dtos/requests/update-license-params.requests.dto'
 import { UpdateLicenseStatusRequestDto } from './dtos/requests/update-license-status.dto'
 import { UpdateLicenseByIdResponseDto } from './dtos/responses/update-license.dto'
 import { LicensesService } from '../../application/licenses.service'
+import { Licenses } from '../../domain/licenses.entity'
 
 type LicenseStatusEvent = {
   licenseId: number

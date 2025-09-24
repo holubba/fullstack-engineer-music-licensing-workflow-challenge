@@ -10,9 +10,9 @@ import {
   Entity,
 } from 'typeorm'
 
-import { Licenses } from './licenses.entity'
-import { Scenes } from './scenes.entity'
-import { Songs } from './songs.entity'
+import { Licenses } from '../../licenses/domain/licenses.entity'
+import { Scenes } from '../../scenes/domain/scenes.entity'
+import { Songs } from '../../songs/domain/songs.entity'
 
 @Entity('tracks')
 export class Tracks {

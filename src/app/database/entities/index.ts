@@ -1,6 +1,0 @@
-export * from './license-history.entity'
-export * from './licenses.entity'
-export * from './movies.entity'
-export * from './scenes.entity'
-export * from './songs.entity'
-export * from './tracks.entity'

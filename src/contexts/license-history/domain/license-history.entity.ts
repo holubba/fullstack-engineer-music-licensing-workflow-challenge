@@ -7,8 +7,10 @@ import {
   Entity,
 } from 'typeorm'
 
-import { LicenseStatus } from './types/types'
-import { Licenses } from './licenses.entity'
+import { LicenseStatus } from '@/src/app/database/entities/types/types'
+
+import { Licenses } from '../../licenses/domain/licenses.entity'
+
 
 @Entity('license_history')
 export class LicenseHistory {

@@ -13,7 +13,7 @@ import {
 import { MoviesRespositoryModule } from '@/src/contexts/movies/infrastructure/repositories/movies.module'
 import { MoviesController } from '@/src/contexts/movies/infrastructure/controllers/movies.controller'
 import { MoviesServiceModule } from '@/src/contexts/movies/application/movies.module'
-import { Movies } from '@/src/app/database/entities'
+import { Movies } from '@/src/contexts/movies/domain/movies.entity'
 import { seedDb } from '@/tests/utils/seed'
 
 describe('GET: Movies', () => {

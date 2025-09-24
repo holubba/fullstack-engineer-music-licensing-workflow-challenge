@@ -1,10 +1,9 @@
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Module } from '@nestjs/common'
 
-import { Licenses } from '@/src/app/database/entities'
-
 import { LicensesRepository } from '../../domain/licenses.repository'
 import { LicensesRepositoryImpl } from './licenses.repository'
+import { Licenses } from '../../domain/licenses.entity'
 
 @Module({
   imports: [TypeOrmModule.forFeature([Licenses])],
@@ -16,4 +15,4 @@ import { LicensesRepositoryImpl } from './licenses.repository'
   ],
   exports: [LicensesRepository],
 })
-export class LicensesRespositoryModule {}
+export class LicensesRespositoryModule { }

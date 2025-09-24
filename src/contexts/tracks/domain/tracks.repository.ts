@@ -1,4 +1,4 @@
-import { Tracks } from '@/src/app/database/entities'
+import { Tracks } from "./tracks.entity";
 
 export abstract class TracksRepository {
   abstract insert(

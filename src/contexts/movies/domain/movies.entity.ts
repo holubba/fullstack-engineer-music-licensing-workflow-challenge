@@ -3,26 +3,21 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   UpdateDateColumn,
-  JoinColumn,
-  ManyToOne,
   OneToMany,
   Column,
   Entity,
 } from 'typeorm'
 
-import { Movies } from './movies.entity'
-import { Tracks } from './tracks.entity'
+import { Scenes } from '../../scenes/domain/scenes.entity'
 
-@Entity('scenes')
-export class Scenes {
+
+@Entity('movies')
+export class Movies {
   @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
   id: number
 
-  @Column({ type: 'varchar', length: 255 })
+  @Column({ type: 'varchar', name: 'name', length: 255 })
   name: string
-
-  @Column({ type: 'int', unsigned: true, name: 'movie_id' })
-  movieId: number
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date
@@ -33,10 +28,6 @@ export class Scenes {
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt?: Date | null
 
-  @ManyToOne(() => Movies)
-  @JoinColumn({ name: 'movie_id' })
-  movie: Movies
-
-  @OneToMany(() => Tracks, track => track.scene)
-  tracks: Tracks[]
+  @OneToMany(() => Scenes, scene => scene.movie)
+  scenes: Scenes[]
 }

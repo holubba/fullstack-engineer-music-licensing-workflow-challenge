@@ -10,9 +10,10 @@ import {
   Entity,
 } from 'typeorm'
 
-import { LicenseHistory } from './license-history.entity'
-import { LicenseStatus } from './types/types'
-import { Tracks } from './tracks.entity'
+import { LicenseStatus } from '@/src/app/database/entities/types/types'
+
+import { LicenseHistory } from '../../license-history/domain/license-history.entity'
+import { Tracks } from '../../tracks/domain/tracks.entity'
 
 @Entity('licenses')
 export class Licenses {

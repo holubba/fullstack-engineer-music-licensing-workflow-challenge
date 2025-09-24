@@ -1,4 +1,4 @@
-import { LicenseHistory } from '@/src/app/database/entities'
+import { LicenseHistory } from "./license-history.entity";
 
 export abstract class LicenseHistoryRepository {
   abstract create(

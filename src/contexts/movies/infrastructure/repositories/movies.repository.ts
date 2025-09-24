@@ -2,16 +2,15 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Injectable } from '@nestjs/common'
 import { Repository } from 'typeorm'
 
-import { Movies } from '@/src/app/database/entities'
-
 import { MoviesRepository } from '../../domain/movies.repository'
+import { Movies } from '../../domain/movies.entity'
 
 @Injectable()
 export class MoviesRepositoryImpl implements MoviesRepository {
   constructor(
     @InjectRepository(Movies)
     private readonly moviesRepository: Repository<Movies>,
-  ) {}
+  ) { }
 
   async findById(id: number): Promise<Movies | null> {
     return this.moviesRepository.findOne({

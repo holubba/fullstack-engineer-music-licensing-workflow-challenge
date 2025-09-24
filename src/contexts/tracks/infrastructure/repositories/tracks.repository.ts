@@ -2,16 +2,15 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Injectable } from '@nestjs/common'
 import { Repository } from 'typeorm'
 
-import { Tracks } from '@/src/app/database/entities'
-
 import { TracksRepository } from '../../domain/tracks.repository'
+import { Tracks } from '../../domain/tracks.entity'
 
 @Injectable()
 export class TracksRepositoryImpl implements TracksRepository {
   constructor(
     @InjectRepository(Tracks)
     private readonly tracksRepository: Repository<Tracks>,
-  ) {}
+  ) { }
 
   async findByIdOrFail(id: number): Promise<Tracks> {
     return this.tracksRepository.findOneOrFail({

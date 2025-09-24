@@ -2,12 +2,12 @@ import { Transactional } from 'typeorm-transactional'
 import { Injectable, Inject } from '@nestjs/common'
 
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
-import { Licenses } from '@/src/app/database/entities'
 
 import { LicenseHistoryRepositoryImpl } from '../../license-history/repositories/license-history.repository'
 import { LicensesRepositoryImpl } from '../../licenses/infrastructure/repositories/licenses.repository'
 import { LicenseHistoryRepository } from '../../license-history/domain/license-history.repository'
 import { LicensesRepository } from '../../licenses/domain/licenses.repository'
+import { Licenses } from '../domain/licenses.entity'
 
 @Injectable()
 export class LicensesService {
@@ -16,7 +16,7 @@ export class LicensesService {
     private readonly licensesRepository: LicensesRepositoryImpl,
     @Inject(LicenseHistoryRepository)
     private readonly licenseHistoryRepository: LicenseHistoryRepositoryImpl,
-  ) {}
+  ) { }
 
   @Transactional()
   async update(input: {

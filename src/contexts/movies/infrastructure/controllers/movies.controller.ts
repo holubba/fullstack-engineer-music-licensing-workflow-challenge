@@ -6,13 +6,13 @@ import {
 } from '@/src/contexts/shared/swagger/api-responses-docs'
 import { Endpoint } from '@/src/app/http-api/decorators/configure-endpoint.decorator'
 import { CONTROLLERS } from '@/src/app/constants/controllers'
-import { Movies } from '@/src/app/database/entities'
 import { TAGS } from '@/src/app/constants/tags'
 
 import { GetMoviesResponseDto } from './dtos/responses/get-movies.response.dto'
 import { GetMovieByIdRequestDto } from './dtos/requests/get-movie-by-id.dto'
 import { GetMovieByIdResponseDto } from './dtos/responses/movie-by-id.dto'
 import { MoviesService } from '../../application/movies.service'
+import { Movies } from '../../domain/movies.entity'
 
 @Controller(CONTROLLERS.MOVIES)
 export class MoviesController {

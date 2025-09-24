@@ -3,7 +3,8 @@ import { ApiProperty } from '@nestjs/swagger'
 
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { secondsToHHMMSS } from '@/src/contexts/shared/utils/utils'
-import { Tracks, Songs } from '@/src/app/database/entities'
+import { Tracks } from '@/src/contexts/tracks/domain/tracks.entity'
+import { Songs } from '@/src/contexts/songs/domain/songs.entity'
 
 class SongDto {
   @Expose()

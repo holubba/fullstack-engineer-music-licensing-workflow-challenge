@@ -1,10 +1,9 @@
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Module } from '@nestjs/common'
 
-import { Songs } from '@/src/app/database/entities'
-
 import { SongsRepository } from '../../domain/songs.repository'
 import { SongsRepositoryImpl } from './songs.repository'
+import { Songs } from '../../domain/songs.entity'
 
 @Module({
   imports: [TypeOrmModule.forFeature([Songs])],
@@ -16,4 +15,4 @@ import { SongsRepositoryImpl } from './songs.repository'
   ],
   exports: [SongsRepository],
 })
-export class SongsRespositoryModule {}
+export class SongsRespositoryModule { }
