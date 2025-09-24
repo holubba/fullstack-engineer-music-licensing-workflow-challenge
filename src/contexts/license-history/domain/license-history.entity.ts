@@ -11,7 +11,6 @@ import { LicenseStatus } from '@/src/app/database/types'
 
 import { Licenses } from '../../licenses/domain/licenses.entity'
 
-
 @Entity('license_history')
 export class LicenseHistory {
   @PrimaryGeneratedColumn({ type: 'int', unsigned: true })

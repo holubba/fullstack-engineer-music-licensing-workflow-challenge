@@ -1,4 +1,4 @@
-import { Licenses } from "./licenses.entity";
+import { Licenses } from './licenses.entity'
 
 export abstract class LicensesRepository {
   abstract create(

@@ -1,7 +1,4 @@
-import {
-  Column,
-  Entity,
-} from 'typeorm'
+import { Column, Entity } from 'typeorm'
 
 import { BaseEntity } from '@/src/app/database/entities/base.entity'
 

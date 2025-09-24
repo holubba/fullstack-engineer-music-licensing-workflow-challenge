@@ -9,7 +9,7 @@ import { PageSerializeDto, PageDto } from '../pagination/page-dto'
  * Constructor type for a class.
  */
 export interface ClassConstructor {
-  new(...args: unknown[]): object
+  new (...args: unknown[]): object
 }
 
 /**
@@ -24,7 +24,7 @@ export class SerializeInterceptor implements NestInterceptor {
   constructor(
     private dto: ClassConstructor,
     private isPaginated: boolean = false,
-  ) { }
+  ) {}
 
   /**
    * Intercepts the response and transforms it using the provided DTO.

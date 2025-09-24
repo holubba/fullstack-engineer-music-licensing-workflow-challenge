@@ -1,3 +1,4 @@
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import unusedImports from 'eslint-plugin-unused-imports'
 import perfectionist from 'eslint-plugin-perfectionist'
 import vitest from '@vitest/eslint-plugin'
@@ -125,4 +126,5 @@ export default tseslint.config([
       ],
     },
   },
+  eslintPluginPrettierRecommended,
 ])

@@ -28,8 +28,11 @@ export const APPLICATION_ERRORS = {
     },
     TRACK_EXCEEDS_SONG_DURATION: {
       message: `Track exceeds song duration.`,
-
       statusCode: 400,
+    },
+    NOT_FOUND_ERROR: {
+      message: 'The scene with the specified ID was not found in the database.',
+      statusCode: 404,
     },
   },
   GENERIC: {

@@ -10,7 +10,6 @@ import { LicensesRepository } from '../domain/licenses.repository.interface'
 import { LicenseStatusEvent } from '../domain/licenses.types'
 import { Licenses } from '../domain/licenses.entity'
 
-
 @Injectable()
 export class LicensesService {
   private licenseStatusChanges$ = new Subject<LicenseStatusEvent>()
@@ -20,8 +19,7 @@ export class LicensesService {
     private readonly licensesRepository: LicensesRepository,
     @Inject(LicenseHistoryRepository)
     private readonly licenseHistoryRepository: LicenseHistoryRepository,
-  ) { }
-
+  ) {}
 
   @Transactional()
   async update(input: {
@@ -38,7 +36,9 @@ export class LicensesService {
       newStatus: input.status,
     })
 
-    const updatedLicense = await this.licensesRepository.findOneByIdOrFail(input.id)
+    const updatedLicense = await this.licensesRepository.findOneByIdOrFail(
+      input.id,
+    )
 
     this.licenseStatusChanges$.next({
       licenseId: updatedLicense.id,

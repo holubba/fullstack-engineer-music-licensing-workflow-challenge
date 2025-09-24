@@ -43,4 +43,4 @@ export const getTypeOrmModuleOptions = (
     }),
   ],
 })
-export class TypeOrmConfigModule { }
+export class TypeOrmConfigModule {}

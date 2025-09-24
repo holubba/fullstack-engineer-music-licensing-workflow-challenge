@@ -1,10 +1,4 @@
-import {
-  JoinColumn,
-  ManyToOne,
-  OneToOne,
-  Column,
-  Entity,
-} from 'typeorm'
+import { JoinColumn, ManyToOne, OneToOne, Column, Entity } from 'typeorm'
 
 import { BaseEntity } from '@/src/app/database/entities/base.entity'
 

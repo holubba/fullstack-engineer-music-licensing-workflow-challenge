@@ -15,4 +15,4 @@ import { Scenes } from '../../domain/scenes.entity'
   ],
   exports: [ScenesRepository],
 })
-export class ScenesRespositoryModule { }
+export class ScenesRespositoryModule {}

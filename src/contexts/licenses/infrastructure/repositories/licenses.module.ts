@@ -15,4 +15,4 @@ import { Licenses } from '../../domain/licenses.entity'
   ],
   exports: [LicensesRepository],
 })
-export class LicensesRespositoryModule { }
+export class LicensesRespositoryModule {}

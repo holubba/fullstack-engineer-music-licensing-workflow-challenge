@@ -21,4 +21,4 @@ import { HealthModule } from '../contexts/health/health.module'
     LicensesControllerModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}

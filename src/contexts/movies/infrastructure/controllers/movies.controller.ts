@@ -14,7 +14,7 @@ import { Movies } from '../../domain/movies.entity'
 
 @Controller(CONTROLLERS.MOVIES)
 export class MoviesController {
-  constructor(private readonly moviesService: MoviesService) { }
+  constructor(private readonly moviesService: MoviesService) {}
 
   @SwaggerDocs({
     dataDto: GetMovieByIdResponseDto,

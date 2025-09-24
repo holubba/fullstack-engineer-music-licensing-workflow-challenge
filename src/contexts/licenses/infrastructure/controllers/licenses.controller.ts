@@ -16,10 +16,9 @@ import { LicensesService } from '../../application/licenses.service'
 import { LicenseStatusEvent } from '../../domain/licenses.types'
 import { Licenses } from '../../domain/licenses.entity'
 
-
 @Controller(CONTROLLERS.LICENSES)
 export class LicensesController {
-  constructor(private readonly licenseService: LicensesService) { }
+  constructor(private readonly licenseService: LicensesService) {}
 
   @SwaggerDocs({
     dataDto: UpdateLicenseByIdResponseDto,

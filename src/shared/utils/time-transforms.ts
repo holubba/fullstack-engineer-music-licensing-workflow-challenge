@@ -50,4 +50,3 @@ export function secondsToHHMMSS(totalSeconds: number): string {
 
   return `${hh}:${mm}:${ss}`
 }
-

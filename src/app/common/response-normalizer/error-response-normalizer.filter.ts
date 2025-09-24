@@ -10,7 +10,6 @@ import { FastifyReply } from 'fastify'
 
 import { ApplicationError } from '@/src/shared/utils/throw-error'
 
-
 @Catch()
 export class ErrorResponseNormalizerFilter implements ExceptionFilter {
   async catch(rawException: Error, host: ArgumentsHost) {

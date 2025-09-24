@@ -1,5 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm'
 
+import { LicenseHistory } from '@/src/contexts/license-history/domain/license-history.entity'
 import { Licenses } from '@/src/contexts/licenses/domain/licenses.entity'
 import { Movies } from '@/src/contexts/movies/domain/movies.entity'
 import { Scenes } from '@/src/contexts/scenes/domain/scenes.entity'
@@ -73,6 +74,22 @@ export class FullSeedMigration implements MigrationInterface {
       },
     ]
     await db.getRepository(Licenses).save(licenses)
+
+    // --- License History ---
+    const licenseHistories: Partial<LicenseHistory>[] = [
+      {
+        licenseId: 1,
+        oldStatus: LicenseStatus.PENDING,
+        newStatus: LicenseStatus.NEGOCIATING,
+      },
+      {
+        licenseId: 1,
+        oldStatus: LicenseStatus.NEGOCIATING,
+        newStatus: LicenseStatus.APPROVED,
+      },
+    ]
+
+    await db.getRepository(LicenseHistory).save(licenseHistories)
   }
 
   async down(queryRunner: QueryRunner): Promise<void> {

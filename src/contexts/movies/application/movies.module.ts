@@ -8,4 +8,4 @@ import { MoviesService } from './movies.service'
   providers: [MoviesService],
   exports: [MoviesService],
 })
-export class MoviesServiceModule { }
+export class MoviesServiceModule {}

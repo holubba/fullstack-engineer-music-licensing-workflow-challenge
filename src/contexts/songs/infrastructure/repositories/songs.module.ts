@@ -15,4 +15,4 @@ import { Songs } from '../../domain/songs.entity'
   ],
   exports: [SongsRepository],
 })
-export class SongsRespositoryModule { }
+export class SongsRespositoryModule {}

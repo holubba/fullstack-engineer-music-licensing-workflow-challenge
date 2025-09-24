@@ -2,7 +2,6 @@ import { loadEnv } from 'vite'
 
 import { r } from './utils/alias'
 
-
 export const createVitestTestConfig = () => {
   return {
     name: 'e2e',

@@ -12,7 +12,6 @@ import { ClassConstructor } from 'class-transformer'
 
 import { SerializeInterceptor } from '../serializer/serializer'
 
-
 interface CustomDecoratorOptions {
   operation: 'post' | 'get' | 'put' | 'delete' | 'patch'
   responseDto?: ClassConstructor<object>

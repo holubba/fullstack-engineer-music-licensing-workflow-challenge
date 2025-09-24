@@ -10,7 +10,7 @@ export class LicenseHistoryRepositoryImpl implements LicenseHistoryRepository {
   constructor(
     @InjectRepository(LicenseHistory)
     private readonly licenseHistoryRepository: Repository<LicenseHistory>,
-  ) { }
+  ) {}
   async create(
     licenseHistory: Pick<
       LicenseHistory,

@@ -3,7 +3,6 @@ import { ApiProperty } from '@nestjs/swagger'
 
 import { LicenseStatus } from '@/src/app/database/types'
 
-
 export class UpdateLicenseStatusRequestDto {
   @IsNotEmpty()
   @IsEnum(LicenseStatus, {

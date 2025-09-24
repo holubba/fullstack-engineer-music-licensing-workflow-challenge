@@ -1,4 +1,9 @@
-import { PrimaryGeneratedColumn, CreateDateColumn, DeleteDateColumn, UpdateDateColumn } from "typeorm"
+import {
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  DeleteDateColumn,
+  UpdateDateColumn,
+} from 'typeorm'
 
 export class BaseEntity {
   @PrimaryGeneratedColumn({ type: 'int', unsigned: true })

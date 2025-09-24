@@ -1,7 +1,22 @@
-import { ApiNoContentResponse, ApiHeaderOptions, ApiParamOptions, ApiOperation, ApiHeaders, ApiParam, ApiTags } from "@nestjs/swagger"
-import { applyDecorators, Type } from "@nestjs/common"
+import {
+  ApiNoContentResponse,
+  ApiHeaderOptions,
+  ApiParamOptions,
+  ApiOperation,
+  ApiHeaders,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger'
+import { applyDecorators, Type } from '@nestjs/common'
 
-import { buildResponseCodeExamples, CustomApiCreatedResponse, ApiOkResponsePaginated, CustomApiOkResponse, ResponseCodes, HttpMethods } from "../swagger/api-responses-docs"
+import {
+  buildResponseCodeExamples,
+  CustomApiCreatedResponse,
+  ApiOkResponsePaginated,
+  CustomApiOkResponse,
+  ResponseCodes,
+  HttpMethods,
+} from '../swagger/api-responses-docs'
 
 export const SwaggerDocs = <DataDto extends Type<unknown>>(schema: {
   dataDto: DataDto | null

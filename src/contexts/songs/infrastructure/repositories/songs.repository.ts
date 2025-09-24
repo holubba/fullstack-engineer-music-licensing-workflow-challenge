@@ -10,7 +10,7 @@ export class SongsRepositoryImpl implements SongsRepository {
   constructor(
     @InjectRepository(Songs)
     private readonly songsRepository: Repository<Songs>,
-  ) { }
+  ) {}
 
   async findById(id: number): Promise<Songs | null> {
     return this.songsRepository.findOne({

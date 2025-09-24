@@ -7,4 +7,4 @@ import { LicensesController } from './licenses.controller'
   imports: [LicensesServiceModule],
   controllers: [LicensesController],
 })
-export class LicensesControllerModule { }
+export class LicensesControllerModule {}

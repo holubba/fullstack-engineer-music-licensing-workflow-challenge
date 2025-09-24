@@ -10,7 +10,7 @@ export class LicensesRepositoryImpl implements LicensesRepository {
   constructor(
     @InjectRepository(Licenses)
     private readonly licensesRepository: Repository<Licenses>,
-  ) { }
+  ) {}
   async findOneByIdOrFail(id: number): Promise<Licenses> {
     return await this.licensesRepository.findOneOrFail({
       where: {

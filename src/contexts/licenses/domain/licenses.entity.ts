@@ -1,10 +1,4 @@
-import {
-  JoinColumn,
-  OneToMany,
-  OneToOne,
-  Column,
-  Entity,
-} from 'typeorm'
+import { JoinColumn, OneToMany, OneToOne, Column, Entity } from 'typeorm'
 
 import { BaseEntity } from '@/src/app/database/entities/base.entity'
 import { LicenseStatus } from '@/src/app/database/types'

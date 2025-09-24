@@ -12,7 +12,7 @@ export class MoviesService {
   constructor(
     @Inject(MoviesRepository)
     private readonly moviesRepository: MoviesRepository,
-  ) { }
+  ) {}
 
   async findById({ id }: GetMovieByIdRequestDto): Promise<Movies> {
     const movie = await this.moviesRepository.findById(id)

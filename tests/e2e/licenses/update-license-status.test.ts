@@ -93,7 +93,7 @@ describe('PATCH: License status', () => {
       .getRepository(LicenseHistory)
       .findOneOrFail({ where: { licenseId: id } })
     expect(licenseHistory).toEqual({
-      id: 1,
+      id: 3,
       licenseId: id,
       oldStatus: licenseBefore.status,
       newStatus: licenseAfter.status,

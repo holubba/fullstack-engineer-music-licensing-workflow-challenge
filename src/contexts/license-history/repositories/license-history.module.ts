@@ -15,4 +15,4 @@ import { LicenseHistory } from '../domain/license-history.entity'
   ],
   exports: [LicenseHistoryRepository],
 })
-export class LicenseHistoryRespositoryModule { }
+export class LicenseHistoryRespositoryModule {}

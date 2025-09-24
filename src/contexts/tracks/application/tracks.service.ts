@@ -1,7 +1,10 @@
 import { Transactional } from 'typeorm-transactional'
 import { Injectable, Inject } from '@nestjs/common'
 
-import { hhmmssToSeconds, secondsToHHMMSS } from '@/src/shared/utils/time-transforms'
+import {
+  hhmmssToSeconds,
+  secondsToHHMMSS,
+} from '@/src/shared/utils/time-transforms'
 import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
 import { throwError } from '@/src/shared/utils/throw-error'
 import { LicenseStatus } from '@/src/app/database/types'
@@ -24,7 +27,7 @@ export class TracksService {
     private readonly scenesRepository: ScenesRepository,
     @Inject(LicensesRepository)
     private readonly licensesRepository: LicensesRepository,
-  ) { }
+  ) {}
 
   @Transactional()
   async create(input: CreateTrackRequestDto): Promise<Tracks> {
@@ -57,7 +60,17 @@ export class TracksService {
       notes: input.notes,
     })
 
-    return await this.tracksRepository.findByIdOrFail(newTrack.id)
+    return await this.tracksRepository.findOneByIdOrFail(newTrack.id)
+  }
+
+  async getTrackById(id: number): Promise<Tracks> {
+    const track = await this.tracksRepository.findOneById(id)
+
+    if (!track) {
+      throwError(APPLICATION_ERRORS.TRACKS.NOT_FOUND_ERROR)
+    }
+
+    return track
   }
 
   /**

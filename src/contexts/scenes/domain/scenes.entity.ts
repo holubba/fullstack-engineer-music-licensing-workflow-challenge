@@ -1,16 +1,9 @@
-import {
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  Column,
-  Entity,
-} from 'typeorm'
+import { JoinColumn, ManyToOne, OneToMany, Column, Entity } from 'typeorm'
 
 import { BaseEntity } from '@/src/app/database/entities/base.entity'
 
 import { Movies } from '../../movies/domain/movies.entity'
 import { Tracks } from '../../tracks/domain/tracks.entity'
-
 
 @Entity('scenes')
 export class Scenes extends BaseEntity {

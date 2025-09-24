@@ -15,4 +15,4 @@ import { Movies } from '../../domain/movies.entity'
   ],
   exports: [MoviesRepository],
 })
-export class MoviesRespositoryModule { }
+export class MoviesRespositoryModule {}
