@@ -13,10 +13,9 @@ export interface Response<T> {
 
 @Injectable()
 export class SuccessResponseNormalizerInterceptor<T>
-  implements NestInterceptor<T, Response<T>>
-{
+  implements NestInterceptor<T, Response<T>> {
   intercept(
-    context: ExecutionContext,
+    _: ExecutionContext,
     next: CallHandler,
   ): Observable<Response<T>> {
     return next.handle().pipe(map((data: T) => ({ data })))
