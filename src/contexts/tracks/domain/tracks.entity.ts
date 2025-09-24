@@ -1,4 +1,4 @@
-import { JoinColumn, ManyToOne, OneToOne, Column, Entity } from 'typeorm'
+import { JoinColumn, ManyToOne, OneToOne, Column, Entity, Check } from 'typeorm'
 
 import { BaseEntity } from '@/src/app/database/entities/base.entity'
 
@@ -7,6 +7,8 @@ import { Scenes } from '../../scenes/domain/scenes.entity'
 import { Songs } from '../../songs/domain/songs.entity'
 
 @Entity('tracks')
+@Check(`"end_time" > "start_time"`)
+@Check(`"start_time" >= 0`)
 export class Tracks extends BaseEntity {
   @Column({ type: 'int', unsigned: true, name: 'scene_id' })
   sceneId: number

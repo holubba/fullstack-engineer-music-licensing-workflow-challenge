@@ -5,6 +5,7 @@ import {
   ManyToOne,
   Column,
   Entity,
+  Check,
 } from 'typeorm'
 
 import { LicenseStatus } from '@/src/app/database/types'
@@ -12,6 +13,7 @@ import { LicenseStatus } from '@/src/app/database/types'
 import { Licenses } from '../../licenses/domain/licenses.entity'
 
 @Entity('license_history')
+@Check(`old_status::text <> new_status::text`)
 export class LicenseHistory {
   @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
   id: number
