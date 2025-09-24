@@ -9,7 +9,7 @@ import { ClassConstructor, plainToInstance } from 'class-transformer'
 import { DataSourceOptions, DataSource } from 'typeorm'
 import { Module } from '@nestjs/common'
 
-import { MINIMAL_TEST_DATA_SOURCE, TEST_DATA_SOURCE } from './constants'
+import { MINIMAL_TEST_DATA_SOURCE, TEST_DATA_SOURCE } from './data-source'
 
 export async function mockDB() {
   const DATABASE_NAME = `db_test_${process.env.VITEST_WORKER_ID}`
@@ -70,4 +70,4 @@ const getTypeOrmModuleOptions = (): TypeOrmModuleOptions => {
     }),
   ],
 })
-export class TestTypeOrmConfigModule {}
+export class TestTypeOrmConfigModule { }

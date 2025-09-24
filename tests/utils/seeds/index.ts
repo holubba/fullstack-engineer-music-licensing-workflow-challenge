@@ -1,1 +1,1 @@
-export * from './1-movies-seed'
+export * from './1-initial-db-seed'
