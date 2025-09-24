@@ -2,12 +2,12 @@ import { Controller, Param, Body, Sse } from '@nestjs/common'
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 import { Observable } from 'rxjs'
 
-import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { SwaggerDocs } from '@/src/shared/decorators/swagger.decorator'
 import { Endpoint } from '@/src/shared/decorators/endpoint.decorator'
 import { HttpMethods } from '@/src/shared/swagger/api-responses-docs'
 import { CONTROLLERS } from '@/src/app/constants/api.constants'
 import { TAGS } from '@/src/app/constants/docs.contants'
+import { LicenseStatus } from '@/src/app/database/types'
 
 import { UpdateLicenseStatusParamsDto } from './dtos/requests/update-license-params.requests.dto'
 import { UpdateLicenseStatusRequestDto } from './dtos/requests/update-license-status.dto'

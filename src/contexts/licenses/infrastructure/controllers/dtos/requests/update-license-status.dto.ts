@@ -1,7 +1,8 @@
 import { IsNotEmpty, IsEnum } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
 
-import { LicenseStatus } from '@/src/app/database/entities/types/types'
+import { LicenseStatus } from '@/src/app/database/types'
+
 
 export class UpdateLicenseStatusRequestDto {
   @IsNotEmpty()

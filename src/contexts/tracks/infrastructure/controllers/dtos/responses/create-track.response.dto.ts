@@ -1,9 +1,9 @@
 import { Transform, Expose, Type } from 'class-transformer'
 import { ApiProperty } from '@nestjs/swagger'
 
-import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { secondsToHHMMSS } from '@/src/shared/utils/time-transforms'
 import { Tracks } from '@/src/contexts/tracks/domain/tracks.entity'
+import { LicenseStatus } from '@/src/app/database/types'
 
 class LicenseDto {
   @Expose()

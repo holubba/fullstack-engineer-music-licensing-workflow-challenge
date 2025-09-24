@@ -7,7 +7,7 @@ import {
   Entity,
 } from 'typeorm'
 
-import { LicenseStatus } from '@/src/app/database/entities/types/types'
+import { LicenseStatus } from '@/src/app/database/types'
 
 import { Licenses } from '../../licenses/domain/licenses.entity'
 

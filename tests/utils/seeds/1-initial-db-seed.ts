@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner } from 'typeorm'
 
 import { Licenses } from '@/src/contexts/licenses/domain/licenses.entity'
-import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { Movies } from '@/src/contexts/movies/domain/movies.entity'
 import { Scenes } from '@/src/contexts/scenes/domain/scenes.entity'
 import { Tracks } from '@/src/contexts/tracks/domain/tracks.entity'
 import { Songs } from '@/src/contexts/songs/domain/songs.entity'
+import { LicenseStatus } from '@/src/app/database/types'
 
 export class FullSeedMigration implements MigrationInterface {
   async up(queryRunner: QueryRunner): Promise<void> {

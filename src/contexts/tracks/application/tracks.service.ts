@@ -3,8 +3,8 @@ import { Injectable, Inject } from '@nestjs/common'
 
 import { hhmmssToSeconds, secondsToHHMMSS } from '@/src/shared/utils/time-transforms'
 import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
-import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { throwError } from '@/src/shared/utils/throw-error'
+import { LicenseStatus } from '@/src/app/database/types'
 
 import { CreateTrackRequestDto } from '../infrastructure/controllers/dtos/requests/create-track.request.dto'
 import { LicensesRepository } from '../../licenses/domain/licenses.repository.interface'

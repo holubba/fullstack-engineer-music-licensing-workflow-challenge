@@ -6,8 +6,8 @@ import {
   Entity,
 } from 'typeorm'
 
-import { LicenseStatus } from '@/src/app/database/entities/types/types'
 import { BaseEntity } from '@/src/app/database/entities/base.entity'
+import { LicenseStatus } from '@/src/app/database/types'
 
 import { LicenseHistory } from '../../license-history/domain/license-history.entity'
 import { Tracks } from '../../tracks/domain/tracks.entity'

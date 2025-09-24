@@ -1,4 +1,4 @@
-import { LicenseStatus } from "@/src/app/database/entities/types/types"
+import { LicenseStatus } from "@/src/app/database/types"
 
 export type LicenseStatusEvent = {
   licenseId: number

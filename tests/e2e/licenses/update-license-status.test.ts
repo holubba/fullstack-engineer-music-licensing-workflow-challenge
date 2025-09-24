@@ -18,7 +18,7 @@ import {
 import { LicenseHistory } from '@/src/contexts/license-history/domain/license-history.entity'
 import { LicensesServiceModule } from '@/src/contexts/licenses/application/licenses.module'
 import { Licenses } from '@/src/contexts/licenses/domain/licenses.entity'
-import { LicenseStatus } from '@/src/app/database/entities/types/types'
+import { LicenseStatus } from '@/src/app/database/types'
 import { seedDb } from '@/tests/utils/seed'
 
 describe('PATCH: License status', () => {

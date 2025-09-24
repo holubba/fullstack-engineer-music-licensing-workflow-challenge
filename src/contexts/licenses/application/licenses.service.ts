@@ -3,7 +3,7 @@ import { Injectable, Inject } from '@nestjs/common'
 import { Subject } from 'rxjs/internal/Subject'
 import { Observable, map } from 'rxjs'
 
-import { LicenseStatus } from '@/src/app/database/entities/types/types'
+import { LicenseStatus } from '@/src/app/database/types'
 
 import { LicenseHistoryRepository } from '../../license-history/domain/license-history.repository.interface'
 import { LicensesRepository } from '../domain/licenses.repository.interface'
