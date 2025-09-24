@@ -10,10 +10,6 @@ import {
   secondsToHHMMSS,
   hhmmssToSeconds,
 } from '../../shared/utils/utils'
-import { LicensesRepositoryImpl } from '../../licenses/infrastructure/repositories/licenses.repository'
-import { ScenesRepositoryImpl } from '../../scenes/infrastructure/repositories/scenes.repository'
-import { SongsRepositoryImpl } from '../../songs/infrastructure/repositories/songs.repository'
-import { TracksRepositoryImpl } from '../infrastructure/repositories/tracks.repository'
 import { LicensesRepository } from '../../licenses/domain/licenses.repository'
 import { ScenesRepository } from '../../scenes/domain/scenes.repository'
 import { SongsRepository } from '../../songs/domain/songs.repository'
@@ -25,13 +21,13 @@ import { Tracks } from '../domain/tracks.entity'
 export class TracksService {
   constructor(
     @Inject(TracksRepository)
-    private readonly tracksRepository: TracksRepositoryImpl,
+    private readonly tracksRepository: TracksRepository,
     @Inject(SongsRepository)
-    private readonly songsRepository: SongsRepositoryImpl,
+    private readonly songsRepository: SongsRepository,
     @Inject(ScenesRepository)
-    private readonly scenesRepository: ScenesRepositoryImpl,
+    private readonly scenesRepository: ScenesRepository,
     @Inject(LicensesRepository)
-    private readonly licensesRepository: LicensesRepositoryImpl,
+    private readonly licensesRepository: LicensesRepository,
   ) { }
 
   @Transactional()

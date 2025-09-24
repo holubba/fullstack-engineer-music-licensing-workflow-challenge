@@ -10,7 +10,7 @@ import { TAGS } from '@/src/app/constants/docs.contants'
 
 import { CreateTrackResponseDto } from './dtos/responses/create-track.response.dto'
 import { CreateTrackRequestDto } from './dtos/requests/create-track.request.dto'
-import { TracksService } from '../../application/tracks-service'
+import { TracksService } from '../../application/tracks.service'
 import { Tracks } from '../../domain/tracks.entity'
 
 @Controller(CONTROLLERS.TRACKS)

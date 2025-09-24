@@ -3,8 +3,6 @@ import { Injectable, Inject } from '@nestjs/common'
 
 import { LicenseStatus } from '@/src/app/database/entities/types/types'
 
-import { LicenseHistoryRepositoryImpl } from '../../license-history/repositories/license-history.repository'
-import { LicensesRepositoryImpl } from '../../licenses/infrastructure/repositories/licenses.repository'
 import { LicenseHistoryRepository } from '../../license-history/domain/license-history.repository'
 import { LicensesRepository } from '../../licenses/domain/licenses.repository'
 import { Licenses } from '../domain/licenses.entity'
@@ -13,9 +11,9 @@ import { Licenses } from '../domain/licenses.entity'
 export class LicensesService {
   constructor(
     @Inject(LicensesRepository)
-    private readonly licensesRepository: LicensesRepositoryImpl,
+    private readonly licensesRepository: LicensesRepository,
     @Inject(LicenseHistoryRepository)
-    private readonly licenseHistoryRepository: LicenseHistoryRepositoryImpl,
+    private readonly licenseHistoryRepository: LicenseHistoryRepository,
   ) { }
 
   @Transactional()

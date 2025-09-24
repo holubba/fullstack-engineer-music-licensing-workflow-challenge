@@ -4,7 +4,7 @@ import { LicensesRespositoryModule } from '../../licenses/infrastructure/reposit
 import { ScenesRespositoryModule } from '../../scenes/infrastructure/repositories/scenes.module'
 import { SongsRespositoryModule } from '../../songs/infrastructure/repositories/songs.module'
 import { TracksRespositoryModule } from '../infrastructure/repositories/tracks.module'
-import { TracksService } from './tracks-service'
+import { TracksService } from './tracks.service'
 
 @Module({
   imports: [
@@ -16,4 +16,4 @@ import { TracksService } from './tracks-service'
   providers: [TracksService],
   exports: [TracksService],
 })
-export class TracksServiceModule {}
+export class TracksServiceModule { }
