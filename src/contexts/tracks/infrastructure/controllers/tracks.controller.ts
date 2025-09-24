@@ -15,7 +15,7 @@ import { Tracks } from '../../domain/tracks.entity'
 
 @Controller(CONTROLLERS.TRACKS)
 export class TracksController {
-  constructor(private readonly tracksService: TracksService) { }
+  constructor(private readonly tracksService: TracksService) {}
 
   @SwaggerDocs({
     dataDto: CreateTrackResponseDto,

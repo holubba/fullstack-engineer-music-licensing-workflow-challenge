@@ -17,6 +17,7 @@ import {
 } from '@/tests/utils/vitest-helpers'
 import { LicenseHistory } from '@/src/contexts/license-history/domain/license-history.entity'
 import { LicensesServiceModule } from '@/src/contexts/licenses/application/licenses.module'
+import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
 import { Licenses } from '@/src/contexts/licenses/domain/licenses.entity'
 import { LicenseStatus } from '@/src/app/database/types'
 import { seedDb } from '@/tests/utils/seed'
@@ -102,6 +103,19 @@ describe('PATCH: License status', () => {
     })
   })
 
+  it('should throw error when trying to update from negociating to pending', async () => {
+    const id = 2
+
+    const result = controller.updateLicense(
+      { id },
+      { status: LicenseStatus.PENDING },
+    )
+    await expect(result).rejects.toMatchObject({
+      ...APPLICATION_ERRORS.LICENSES.INVALID_TRANSITION,
+      message: `Cannot change license from ${LicenseStatus.NEGOCIATING} to ${LicenseStatus.PENDING}`,
+    })
+  })
+
   it('should reject invalid status', async () => {
     const result = plainToInstance(UpdateLicenseStatusRequestDto, {
       status: 'pepe' as LicenseStatus,
@@ -110,7 +124,7 @@ describe('PATCH: License status', () => {
     expect(errors.length).toBe(1)
     expect(errors[0].constraints).toEqual({
       isEnum:
-        'status must be a valid enum value: pending, negotiating, approved, rejected',
+        'status must be a valid enum value: pending, negotiating, approved, rejected, expired',
     })
   })
 

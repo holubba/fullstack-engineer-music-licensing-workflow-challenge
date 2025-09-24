@@ -18,7 +18,7 @@ import { Licenses } from '../../domain/licenses.entity'
 
 @Controller(CONTROLLERS.LICENSES)
 export class LicensesController {
-  constructor(private readonly licenseService: LicensesService) {}
+  constructor(private readonly licenseService: LicensesService) { }
 
   @SwaggerDocs({
     dataDto: UpdateLicenseByIdResponseDto,
@@ -30,8 +30,13 @@ export class LicensesController {
       'Updates the status of an existing license.\n\n' +
       'This endpoint allows changing the license status (e.g., pending → approved).\n\n' +
       'When the status is updated, a license history record is automatically created to track the change.\n\n' +
-      'If the license with the specified ID does not exist, a 404 Not Found error will be returned.\n\n' +
-      'If the provided status value is invalid, a 400 Bad Request error will be returned.',
+      'Valid status transitions are:\n' +
+      '- pending → negociating\n' +
+      '- negociating → approved, rejected\n' +
+      '- approved → expired\n' +
+      '- rejected → (no valid transitions)\n' +
+      '- expired → (no valid transitions)\n\n' +
+      'If the license with the specified ID does not exist, a 404 Not Found error will be returned.\n\n',
     summary: 'Update License Status',
     params: { name: 'id', description: 'License ID to update' },
   })
@@ -47,7 +52,6 @@ export class LicensesController {
     return await this.licenseService.update({ id, status })
   }
 
-  @Sse('status/stream')
   @ApiOperation({
     tags: [TAGS.LICENSES],
     summary:
@@ -78,6 +82,7 @@ export class LicensesController {
       },
     },
   })
+  @Sse('status/stream')
   licenseStatusStream(): Observable<{ data: LicenseStatusEvent }> {
     return this.licenseService.licenseStatusStream()
   }

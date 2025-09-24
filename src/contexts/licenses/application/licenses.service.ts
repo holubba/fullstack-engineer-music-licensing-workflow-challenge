@@ -3,6 +3,8 @@ import { Injectable, Inject } from '@nestjs/common'
 import { Subject } from 'rxjs/internal/Subject'
 import { Observable, map } from 'rxjs'
 
+import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
+import { throwError } from '@/src/shared/utils/throw-error'
 import { LicenseStatus } from '@/src/app/database/types'
 
 import { LicenseHistoryRepository } from '../../license-history/domain/license-history.repository.interface'
@@ -27,6 +29,13 @@ export class LicensesService {
     status: LicenseStatus
   }): Promise<Licenses> {
     const license = await this.licensesRepository.findOneByIdOrFail(input.id)
+
+    if (!this.canTransition(license.status, input.status)) {
+      throwError({
+        ...APPLICATION_ERRORS.LICENSES.INVALID_TRANSITION,
+        message: `Cannot change license from ${license.status} to ${input.status}`,
+      })
+    }
 
     await this.licensesRepository.update(input)
 
@@ -53,5 +62,20 @@ export class LicensesService {
     return this.licenseStatusChanges$
       .asObservable()
       .pipe(map(event => ({ data: event })))
+  }
+
+  private licenseStateTransitions: Record<LicenseStatus, LicenseStatus[]> = {
+    [LicenseStatus.PENDING]: [LicenseStatus.NEGOCIATING],
+    [LicenseStatus.APPROVED]: [LicenseStatus.EXPIRED],
+    [LicenseStatus.REJECTED]: [],
+    [LicenseStatus.EXPIRED]: [],
+    [LicenseStatus.NEGOCIATING]: [
+      LicenseStatus.APPROVED,
+      LicenseStatus.REJECTED,
+    ],
+  }
+
+  private canTransition(current: LicenseStatus, next: LicenseStatus): boolean {
+    return this.licenseStateTransitions[current].includes(next)
   }
 }

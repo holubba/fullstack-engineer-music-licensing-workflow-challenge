@@ -25,10 +25,7 @@ export class TracksRepositoryImpl implements TracksRepository {
     id: number,
     options: { throwsError: false },
   ): Promise<Tracks | null>
-  private findById(
-    id: number,
-    options: { throwsError: boolean },
-  ): Promise<Tracks | null> {
+  private findById(id: number, options: { throwsError: boolean }) {
     const query = {
       where: { id },
       relations: {

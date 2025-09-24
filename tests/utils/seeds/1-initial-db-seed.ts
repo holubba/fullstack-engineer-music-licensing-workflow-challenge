@@ -68,7 +68,7 @@ export class FullSeedMigration implements MigrationInterface {
       },
       {
         trackId: savedTracks[1].id,
-        status: LicenseStatus.REJECTED,
+        status: LicenseStatus.PENDING,
         rightsHolder: 'Village Roadshow',
         notes: 'Expired distribution license',
       },

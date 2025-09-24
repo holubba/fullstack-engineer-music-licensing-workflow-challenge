@@ -17,6 +17,12 @@ export const APPLICATION_ERRORS = {
       statusCode: 404,
     },
   },
+  LICENSES: {
+    INVALID_TRANSITION: {
+      message: 'The transition is not valid',
+      statusCode: 404,
+    },
+  },
   TRACKS: {
     WRONG_TIME_FORMAT: {
       message: 'The time fields have to be in HH:MM:SS format.',
