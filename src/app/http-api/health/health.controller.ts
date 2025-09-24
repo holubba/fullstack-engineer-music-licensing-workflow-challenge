@@ -6,10 +6,11 @@ import { Serialize } from '@/src/contexts/shared/custom-decorators/serializer'
 
 import { CONTROLLERS } from '../../constants/controllers'
 import { HealthCheckResponseDto } from './health.dto'
+import { TAGS } from '../../constants/tags'
 
 @Controller(CONTROLLERS.HEALTH)
 export class HealthController {
-  @ApiTags('Health')
+  @ApiTags(TAGS.HEALTH)
   @ApiOperation({
     summary: 'Health Check',
     description:
