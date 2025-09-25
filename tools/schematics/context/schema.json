@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "ContextSchema",
+  "title": "Context Options",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The context name (singular)"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
