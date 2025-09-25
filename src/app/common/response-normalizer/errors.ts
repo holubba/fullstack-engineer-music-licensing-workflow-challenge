@@ -10,6 +10,10 @@ export const APPLICATION_ERRORS = {
       message: 'The song with the specified ID was not found in the database.',
       statusCode: 404,
     },
+    FOUND_ERROR: {
+      message: 'The song with the specified name was found in the database.',
+      statusCode: 400,
+    },
   },
   SCENES: {
     NOT_FOUND_ERROR: {

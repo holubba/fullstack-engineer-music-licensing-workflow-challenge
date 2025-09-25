@@ -4,4 +4,5 @@ export const TAGS = {
   LICENSES: 'Licenses',
   HEALTH: 'Health',
   SCENES: 'Scenes',
+  SONGS: 'Songs',
 }

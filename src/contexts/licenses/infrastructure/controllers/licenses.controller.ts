@@ -18,7 +18,7 @@ import { Licenses } from '../../domain/licenses.entity'
 
 @Controller(CONTROLLERS.LICENSES)
 export class LicensesController {
-  constructor(private readonly licenseService: LicensesService) { }
+  constructor(private readonly licenseService: LicensesService) {}
 
   @SwaggerDocs({
     dataDto: UpdateLicenseByIdResponseDto,

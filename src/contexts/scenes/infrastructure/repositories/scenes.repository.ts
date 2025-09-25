@@ -10,7 +10,7 @@ export class ScenesRepositoryImpl implements ScenesRepository {
   constructor(
     @InjectRepository(Scenes)
     private readonly scenesRespository: Repository<Scenes>,
-  ) { }
+  ) {}
   async findById(id: number): Promise<Scenes | null> {
     return await this.scenesRespository.findOne({
       where: { id },

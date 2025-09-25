@@ -4,6 +4,7 @@ export const CONTROLLERS = {
   LICENSES: 'licenses',
   HEALTH: 'health',
   SCENES: 'scenes',
+  SONGS: 'songs',
 }
 
 export const API = 'api'

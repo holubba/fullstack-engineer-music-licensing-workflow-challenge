@@ -13,7 +13,7 @@ import { Scenes } from '../../domain/scenes.entity'
 
 @Controller(CONTROLLERS.SCENES)
 export class ScenesController {
-  constructor(private readonly scenesService: ScenesService) { }
+  constructor(private readonly scenesService: ScenesService) {}
 
   @SwaggerDocs({
     dataDto: CreateSceneResponseDto,

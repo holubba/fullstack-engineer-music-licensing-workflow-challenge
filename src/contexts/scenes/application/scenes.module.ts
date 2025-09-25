@@ -9,4 +9,4 @@ import { ScenesService } from './scenes.service'
   providers: [ScenesService],
   exports: [ScenesService],
 })
-export class ScenesServiceModule { }
+export class ScenesServiceModule {}

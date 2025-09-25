@@ -7,4 +7,4 @@ import { ScenesController } from './scenes.controller'
   imports: [ScenesServiceModule],
   controllers: [ScenesController],
 })
-export class ScenesControllerModule { }
+export class ScenesControllerModule {}

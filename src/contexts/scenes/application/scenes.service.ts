@@ -15,7 +15,7 @@ export class ScenesService {
     private readonly moviesRepository: MoviesRepository,
     @Inject(ScenesRepository)
     private readonly scenesRepository: ScenesRepository,
-  ) { }
+  ) {}
   async create(data: CreateSceneRequestDto): Promise<Scenes> {
     const movie = await this.moviesRepository.findById(data.movieId)
     if (!movie) {

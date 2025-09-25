@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "engines": {
-    "node": ">=20.x",
-    "npm": ">=10.x"
+    "node": ">=22.x",
+    "npm": ">=11.x"
   },
   "main": "dist/main.js",
   "scripts": {
@@ -40,7 +40,7 @@
     "@eslint/js": "^9.22.0",
     "@nestjs/testing": "^11.0.11",
     "@swc/cli": "^0.6.0",
-    "@swc/core": "^1.11.8",
+    "@swc/core": "1.11.8",
     "@testcontainers/postgresql": "^11.6.0",
     "@types/node": "^20.11.30",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
