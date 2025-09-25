@@ -10,7 +10,7 @@ export class MoviesRepositoryImpl implements MoviesRepository {
   constructor(
     @InjectRepository(Movies)
     private readonly moviesRepository: Repository<Movies>,
-  ) {}
+  ) { }
 
   async findById(id: number): Promise<Movies | null> {
     return this.moviesRepository.findOne({
@@ -39,5 +39,15 @@ export class MoviesRepositoryImpl implements MoviesRepository {
         },
       },
     })
+  }
+
+  async findByName(name: string): Promise<Movies | null> {
+    return await this.moviesRepository.findOne({
+      where: { name },
+    })
+  }
+
+  async insert({ name }: { name: string }): Promise<Movies> {
+    return await this.moviesRepository.save({ name })
   }
 }

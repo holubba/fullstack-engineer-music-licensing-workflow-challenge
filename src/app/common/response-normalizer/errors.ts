@@ -4,6 +4,10 @@ export const APPLICATION_ERRORS = {
       message: 'The movie with the specified ID was not found in the database.',
       statusCode: 404,
     },
+    FOUND_ERROR: {
+      message: 'The movie with the specified name was found in the database.',
+      statusCode: 400,
+    },
   },
   SONGS: {
     NOT_FOUND_ERROR: {

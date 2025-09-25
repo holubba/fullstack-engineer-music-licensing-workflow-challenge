@@ -1,4 +1,4 @@
-import { Controller, Param } from '@nestjs/common'
+import { Controller, Param, Body } from '@nestjs/common'
 
 import { SwaggerDocs } from '@/src/shared/decorators/swagger.decorator'
 import { Endpoint } from '@/src/shared/decorators/endpoint.decorator'
@@ -6,6 +6,8 @@ import { HttpMethods } from '@/src/shared/swagger/api-responses-docs'
 import { CONTROLLERS } from '@/src/app/constants/api.constants'
 import { TAGS } from '@/src/app/constants/docs.contants'
 
+import { CreateMovieResponseDto } from './dtos/responses/create-movie.response.dto'
+import { CreateMovieRequestDto } from './dtos/requests/create-movie.request.dto'
 import { GetMoviesResponseDto } from './dtos/responses/get-movies.response.dto'
 import { GetMovieByIdRequestDto } from './dtos/requests/get-movie-by-id.dto'
 import { GetMovieByIdResponseDto } from './dtos/responses/movie-by-id.dto'
@@ -14,7 +16,7 @@ import { Movies } from '../../domain/movies.entity'
 
 @Controller(CONTROLLERS.MOVIES)
 export class MoviesController {
-  constructor(private readonly moviesService: MoviesService) {}
+  constructor(private readonly moviesService: MoviesService) { }
 
   @SwaggerDocs({
     dataDto: GetMovieByIdResponseDto,
@@ -55,5 +57,22 @@ export class MoviesController {
   })
   async getMovies(): Promise<Movies[]> {
     return await this.moviesService.findAll()
+  }
+
+  @SwaggerDocs({
+    dataDto: CreateMovieResponseDto,
+    isPaginated: false,
+    httpMethod: HttpMethods.post,
+    errorResponseCodes: [],
+    tags: TAGS.MOVIES,
+    description: 'Creates a new movie record',
+    summary: 'Create a movie',
+  })
+  @Endpoint({
+    responseDto: CreateMovieResponseDto,
+    operation: HttpMethods.post,
+  })
+  async createMovie(@Body() movie: CreateMovieRequestDto): Promise<Movies> {
+    return await this.moviesService.create(movie)
   }
 }

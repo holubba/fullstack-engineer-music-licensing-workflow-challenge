@@ -12,7 +12,7 @@ export class MoviesService {
   constructor(
     @Inject(MoviesRepository)
     private readonly moviesRepository: MoviesRepository,
-  ) {}
+  ) { }
 
   async findById({ id }: GetMovieByIdRequestDto): Promise<Movies> {
     const movie = await this.moviesRepository.findById(id)
@@ -24,5 +24,13 @@ export class MoviesService {
 
   async findAll(): Promise<Movies[]> {
     return await this.moviesRepository.findAll()
+  }
+
+  async create({ name }: { name: string }): Promise<Movies> {
+    const movie = await this.moviesRepository.findByName(name)
+    if (movie) {
+      throwError(APPLICATION_ERRORS.MOVIES.FOUND_ERROR)
+    }
+    return await this.moviesRepository.insert({ name })
   }
 }
