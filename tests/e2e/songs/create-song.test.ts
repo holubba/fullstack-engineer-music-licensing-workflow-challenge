@@ -58,10 +58,9 @@ describe('POST: Create Song', () => {
     expect(testDto(CreateSongResponseDto, result)).toEqual({
       artistName: 'U2',
       createdAt: expect.any(Date),
-      duration: 60,
+      duration: '00:01:00',
       name: 'Beautiful Day',
       id: 3,
-      title: undefined,
     })
   })
 

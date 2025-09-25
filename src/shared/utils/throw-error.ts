@@ -4,12 +4,20 @@ type ApplicationErrorPayload = {
 }
 
 /**
- * Throws an application-specific error.
- * @param {ApplicationErrorPayload} errorPayload - The payload containing message and status code.
- * @throws {ApplicationError} Always throws an ApplicationError with the given payload.
+ * Throws an application-specific error with an optional overridden message.
+ *
+ * @param {ApplicationErrorPayload} errorPayload - The payload containing details like message, status code, and other metadata.
+ * @param {string} [overrideMessage] - Optional message to override the one in `errorPayload`.
+ * @throws {ApplicationError} Always throws an `ApplicationError` constructed from the payload and optional override message.
  */
-export function throwError(errorPayload: ApplicationErrorPayload): never {
-  throw new ApplicationError(errorPayload)
+export function throwError(
+  errorPayload: ApplicationErrorPayload,
+  overrideMessage?: string,
+): never {
+  throw new ApplicationError({
+    ...errorPayload,
+    message: overrideMessage ?? errorPayload.message,
+  })
 }
 
 /**

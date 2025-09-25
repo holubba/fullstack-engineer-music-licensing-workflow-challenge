@@ -28,7 +28,7 @@ export const APPLICATION_ERRORS = {
   LICENSES: {
     INVALID_TRANSITION: {
       message: 'The transition is not valid',
-      statusCode: 404,
+      statusCode: 400,
     },
   },
   TRACKS: {
