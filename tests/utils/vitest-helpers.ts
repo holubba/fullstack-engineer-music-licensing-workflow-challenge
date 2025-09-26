@@ -28,7 +28,7 @@ export async function mockDB() {
   return clientWithDB
 }
 
-export function testDto(dto: ClassConstructor<object>, payload: any) {
+export function testDto(dto: ClassConstructor<object>, payload: unknown) {
   return plainToInstance(dto, payload, {
     excludeExtraneousValues: true,
     exposeUnsetFields: false,
@@ -38,7 +38,7 @@ export function testDto(dto: ClassConstructor<object>, payload: any) {
 export function testPaginatedDto(
   dto: ClassConstructor<object>,
   payload: Array<unknown>,
-  expectedResult: any,
+  expectedResult: unknown,
 ) {
   expect({
     items: payload.map(item =>
@@ -70,4 +70,4 @@ const getTypeOrmModuleOptions = (): TypeOrmModuleOptions => {
     }),
   ],
 })
-export class TestTypeOrmConfigModule {}
+export class TestTypeOrmConfigModule { }

@@ -8,8 +8,8 @@ import { PageSerializeDto, PageDto } from '../pagination/page-dto'
 /**
  * Constructor type for a class.
  */
-export interface ClassConstructor {
-  new (...args: unknown[]): object
+export interface ClassConstructor<T = unknown> {
+  new(...args: unknown[]): T
 }
 
 /**
@@ -22,9 +22,9 @@ export class SerializeInterceptor implements NestInterceptor {
    * @param isPaginated - Whether the response is a paginated result.
    */
   constructor(
-    private dto: ClassConstructor,
+    private dto: ClassConstructor<unknown>,
     private isPaginated: boolean = false,
-  ) {}
+  ) { }
 
   /**
    * Intercepts the response and transforms it using the provided DTO.
@@ -32,16 +32,16 @@ export class SerializeInterceptor implements NestInterceptor {
    * @param handler - Call handler for the request.
    * @returns Observable with transformed data.
    */
-  intercept(_: ExecutionContext, handler: CallHandler): Observable<unknown> {
+  intercept<T>(
+    _: ExecutionContext,
+    handler: CallHandler,
+  ): Observable<T | PageSerializeDto<T>> {
     if (this.isPaginated) {
       return handler.handle().pipe(
         map((data: PageDto<unknown>) => {
-          const transformedItems = data.items.map(item =>
-            plainToInstance(this.dto, item, {
-              excludeExtraneousValues: true,
-              exposeUnsetFields: false,
-            }),
-          )
+          const transformedItems = data.items.map(item => {
+            return this.transformData<T>(item)
+          })
 
           return new PageSerializeDto(
             transformedItems,
@@ -54,12 +54,16 @@ export class SerializeInterceptor implements NestInterceptor {
     }
 
     return handler.handle().pipe(
-      map((data: ClassConstructor) => {
-        return plainToInstance(this.dto, data, {
-          excludeExtraneousValues: true,
-          exposeUnsetFields: false,
-        })
+      map((data: unknown) => {
+        return this.transformData<T>(data)
       }),
     )
+  }
+
+  private transformData<T>(data: unknown): T {
+    return plainToInstance<T, unknown>(this.dto as ClassConstructor<T>, data, {
+      excludeExtraneousValues: true,
+      exposeUnsetFields: false,
+    })
   }
 }
