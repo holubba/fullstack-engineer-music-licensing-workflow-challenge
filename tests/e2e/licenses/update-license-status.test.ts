@@ -52,24 +52,24 @@ describe('PATCH: License status', () => {
   test.each([
     {
       nextStatus: LicenseStatus.EXPIRED,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.PENDING,
-        LicenseStatus.EXPIRED,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.PENDING,
+        to: LicenseStatus.EXPIRED,
+      }),
     },
     {
       nextStatus: LicenseStatus.PENDING,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.PENDING,
-        LicenseStatus.PENDING,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.PENDING,
+        to: LicenseStatus.PENDING,
+      }),
     },
     {
       nextStatus: LicenseStatus.APPROVED,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.PENDING,
-        LicenseStatus.APPROVED,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.PENDING,
+        to: LicenseStatus.APPROVED,
+      }),
     },
   ])(
     'should reject invalid transition',
@@ -141,24 +141,24 @@ describe('PATCH: License status', () => {
   test.each([
     {
       nextStatus: LicenseStatus.EXPIRED,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.NEGOCIATING,
-        LicenseStatus.EXPIRED,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.NEGOCIATING,
+        to: LicenseStatus.EXPIRED,
+      }),
     },
     {
       nextStatus: LicenseStatus.PENDING,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.NEGOCIATING,
-        LicenseStatus.PENDING,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.NEGOCIATING,
+        to: LicenseStatus.PENDING,
+      }),
     },
     {
       nextStatus: LicenseStatus.NEGOCIATING,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.NEGOCIATING,
-        LicenseStatus.NEGOCIATING,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.NEGOCIATING,
+        to: LicenseStatus.NEGOCIATING,
+      }),
     },
   ])(
     'should reject invalid transition',
@@ -235,31 +235,31 @@ describe('PATCH: License status', () => {
   test.each([
     {
       nextStatus: LicenseStatus.APPROVED,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.REJECTED,
-        LicenseStatus.APPROVED,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.REJECTED,
+        to: LicenseStatus.APPROVED,
+      }),
     },
     {
       nextStatus: LicenseStatus.PENDING,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.REJECTED,
-        LicenseStatus.PENDING,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.REJECTED,
+        to: LicenseStatus.PENDING,
+      }),
     },
     {
       nextStatus: LicenseStatus.NEGOCIATING,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.REJECTED,
-        LicenseStatus.NEGOCIATING,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.REJECTED,
+        to: LicenseStatus.NEGOCIATING,
+      }),
     },
     {
       nextStatus: LicenseStatus.REJECTED,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.REJECTED,
-        LicenseStatus.REJECTED,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.REJECTED,
+        to: LicenseStatus.REJECTED,
+      }),
     },
   ])(
     'should reject invalid transition',
@@ -276,31 +276,31 @@ describe('PATCH: License status', () => {
   test.each([
     {
       nextStatus: LicenseStatus.APPROVED,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.APPROVED,
-        LicenseStatus.APPROVED,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.APPROVED,
+        to: LicenseStatus.APPROVED,
+      }),
     },
     {
       nextStatus: LicenseStatus.NEGOCIATING,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.APPROVED,
-        LicenseStatus.NEGOCIATING,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.APPROVED,
+        to: LicenseStatus.NEGOCIATING,
+      }),
     },
     {
       nextStatus: LicenseStatus.PENDING,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.APPROVED,
-        LicenseStatus.PENDING,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.APPROVED,
+        to: LicenseStatus.PENDING,
+      }),
     },
     {
       nextStatus: LicenseStatus.REJECTED,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.APPROVED,
-        LicenseStatus.REJECTED,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.APPROVED,
+        to: LicenseStatus.REJECTED,
+      }),
     },
   ])(
     'should reject invalid transition',
@@ -377,31 +377,31 @@ describe('PATCH: License status', () => {
   test.each([
     {
       nextStatus: LicenseStatus.EXPIRED,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.EXPIRED,
-        LicenseStatus.EXPIRED,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.EXPIRED,
+        to: LicenseStatus.EXPIRED,
+      }),
     },
     {
       nextStatus: LicenseStatus.APPROVED,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.EXPIRED,
-        LicenseStatus.APPROVED,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.EXPIRED,
+        to: LicenseStatus.APPROVED,
+      }),
     },
     {
       nextStatus: LicenseStatus.REJECTED,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.EXPIRED,
-        LicenseStatus.REJECTED,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.EXPIRED,
+        to: LicenseStatus.REJECTED,
+      }),
     },
     {
       nextStatus: LicenseStatus.PENDING,
-      expectedMessage: generateTransitionErrorMessage(
-        LicenseStatus.EXPIRED,
-        LicenseStatus.PENDING,
-      ),
+      expectedMessage: generateTransitionErrorMessage({
+        from: LicenseStatus.EXPIRED,
+        to: LicenseStatus.PENDING,
+      }),
     },
   ])(
     'should reject invalid transition',
