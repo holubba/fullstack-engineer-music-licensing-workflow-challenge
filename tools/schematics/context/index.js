@@ -1,4 +1,4 @@
-import {
+const {
   renameTemplateFiles,
   mergeWith,
   template,
@@ -7,8 +7,8 @@ import {
   chain,
   move,
   url,
-} from '@angular-devkit/schematics'
-import { strings } from '@angular-devkit/core'
+} = require('@angular-devkit/schematics')
+const { strings } = require('@angular-devkit/core')
 
 /**
  * @param {{ name: string, application?: boolean, domain?: boolean, infrastructure?: boolean }} options
@@ -82,4 +82,4 @@ function context(options) {
   }
 }
 
-export default { context }
+module.exports = { context }
