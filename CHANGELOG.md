@@ -1,5 +1,12 @@
 # Changelog
 ---
+## [1.1.1](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/compare/v1.1.1..v1.1.0) - 2025-09-30
+
+### 📚 Documentation
+
+- added extras to readme - ([1d8b0ee](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/commits/1d8b0eeb95690b6a596a6993e21e3f56eb596d30)) - holubba
+
+---
 ## [1.1.0](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/compare/v1.1.0..v1.0.0) - 2025-09-30
 
 ### ⛰️  Features
