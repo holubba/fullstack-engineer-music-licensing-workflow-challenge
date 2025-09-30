@@ -70,4 +70,4 @@ const getTypeOrmModuleOptions = (): TypeOrmModuleOptions => {
     }),
   ],
 })
-export class TestTypeOrmConfigModule { }
+export class TestTypeOrmConfigModule {}

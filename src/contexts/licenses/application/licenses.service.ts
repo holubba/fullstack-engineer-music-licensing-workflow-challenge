@@ -21,7 +21,7 @@ export class LicensesService {
     private readonly licensesRepository: LicensesRepository,
     @Inject(LicenseHistoryRepository)
     private readonly licenseHistoryRepository: LicenseHistoryRepository,
-  ) { }
+  ) {}
 
   @Transactional()
   async update(input: {

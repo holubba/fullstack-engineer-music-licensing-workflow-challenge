@@ -10,7 +10,7 @@ export class MoviesRepositoryImpl implements MoviesRepository {
   constructor(
     @InjectRepository(Movies)
     private readonly moviesRepository: Repository<Movies>,
-  ) { }
+  ) {}
 
   async findById(id: number): Promise<Movies | null> {
     return this.moviesRepository.findOne({

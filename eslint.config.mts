@@ -12,6 +12,7 @@ export default tseslint.config([
       '**/coverage/',
       '**/docker/',
       '**/scripts/',
+      '**/tools/',
     ],
   },
   eslint.configs.recommended,
