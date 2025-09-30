@@ -1,6 +1,6 @@
 {
   "name": "songs-license-tracker-challenge",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "engines": {
     "node": ">=22.x",
