@@ -2,7 +2,7 @@
 
 API for managing track licensing. Built with NestJS, TypeORM, and PostgreSQL.
 
----
+[Changelog](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/blob/main/CHANGELOG.md)
 
 ## Setup Instructions
 
@@ -76,6 +76,10 @@ Tests are made following some guidelines seen in: <https://github.com/goldbergyo
 - I included a Swagger instance on <http://localhost:PORT/docs> since I wasn't required to make a frontend, but I wanted to make sure that whoever is reading this was going to be able to spin up the project in docker and be able to interact with it without a frontend.
 
 - I included a license-history feature that lets you track each change in licenses status for better traceablity.
+
+- Added a script to automatically create a changelog and bump the tags version, as well as the package-json version with git-cliff and a basic shell script.
+
+- Added Lefthook to keep git commit linted. It also runs the linter and the tests on push to prevent broken releases.
 
 ---
 
