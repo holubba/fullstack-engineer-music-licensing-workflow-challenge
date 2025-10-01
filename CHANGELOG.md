@@ -1,5 +1,12 @@
 # Changelog
 ---
+## [1.2.0](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/compare/v1.2.0..v1.1.1) - 2025-10-01
+
+### ⛰️  Features
+
+- added better error handling in class-validator pipe - ([c990e88](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/commits/c990e8802208933511884b34bbe83699a0043771)) - holubba
+
+---
 ## [1.1.1](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/compare/v1.1.1..v1.1.0) - 2025-09-30
 
 ### 📚 Documentation
