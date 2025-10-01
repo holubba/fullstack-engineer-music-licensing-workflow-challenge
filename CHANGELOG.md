@@ -1,5 +1,16 @@
 # Changelog
 ---
+## [1.3.0](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/compare/v1.3.0..v1.2.0) - 2025-10-01
+
+### ⛰️  Features
+
+- **(docs)** added changelog url to swagger - ([d22c006](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/commits/d22c006809ccc4eb50ba1ee0c71f0d38fb545cae)) - holubba
+
+### 🐛 Bug Fixes
+
+- small type fix in the parseError helper - ([deb6bcb](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/commits/deb6bcb9a12bb001d3a0e554c8570460301ad5f8)) - holubba
+
+---
 ## [1.2.0](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/compare/v1.2.0..v1.1.1) - 2025-10-01
 
 ### ⛰️  Features
