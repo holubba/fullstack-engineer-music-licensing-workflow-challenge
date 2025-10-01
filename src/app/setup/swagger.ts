@@ -9,6 +9,9 @@ export const setupSwagger = (app: INestApplication) => {
   const configService = app.get(ConfigService)
   const config = new DocumentBuilder()
     .setTitle(SWAGGER_NAME)
+    .setDescription(
+      '**Changelog URL:** [Click here](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/blob/main/CHANGELOG.md)',
+    )
     .setVersion(configService.get<string>('API_VERSION', 'Missing'))
     .build()
   const document = SwaggerModule.createDocument(app, config, {
