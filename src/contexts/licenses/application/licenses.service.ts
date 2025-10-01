@@ -31,10 +31,9 @@ export class LicensesService {
     const license = await this.licensesRepository.findOneByIdOrFail(input.id)
 
     if (!this.canTransition(license.status, input.status)) {
-      throwError(
-        APPLICATION_ERRORS.LICENSES.INVALID_TRANSITION,
-        `Cannot change license from ${license.status} to ${input.status}`,
-      )
+      throwError(APPLICATION_ERRORS.LICENSES.INVALID_TRANSITION, {
+        overrideMessage: `Cannot change license from ${license.status} to ${input.status}`,
+      })
     }
 
     await this.licensesRepository.update(input)

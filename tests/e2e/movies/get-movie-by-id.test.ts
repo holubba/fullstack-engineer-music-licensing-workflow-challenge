@@ -1,7 +1,5 @@
 import { TestingModule, Test } from '@nestjs/testing'
-import { plainToInstance } from 'class-transformer'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { validateSync } from 'class-validator'
 import { ConfigModule } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
@@ -16,6 +14,7 @@ import {
 } from '@/tests/utils/vitest-helpers'
 import { MoviesServiceModule } from '@/src/contexts/movies/application/movies.module'
 import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
+import { generateValidatorError } from '@/tests/utils/helper-functions'
 import { seedDb } from '@/tests/utils/seed'
 
 describe('GET/:id Movie', () => {
@@ -58,14 +57,20 @@ describe('GET/:id Movie', () => {
   })
 
   it('should reject invalid id', async () => {
-    const result = plainToInstance(GetMovieByIdRequestDto, {
+    const result = generateValidatorError(GetMovieByIdRequestDto, {
       id: 'pepe',
     })
-    const errors = validateSync(result)
-    expect(errors.length).toBe(1)
-    expect(errors[0].constraints).toEqual({
-      isInt: 'id must be an integer number',
-      isPositive: 'id must be a positive number',
+    expect(result).toEqual({
+      detail: [
+        {
+          id: {
+            isInt: 'id must be an integer number',
+            isPositive: 'id must be a positive number',
+          },
+        },
+      ],
+      message: 'One or more fields were invalid',
+      statusCode: 400,
     })
   })
 })

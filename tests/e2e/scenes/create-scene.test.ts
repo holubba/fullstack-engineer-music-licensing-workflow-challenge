@@ -1,7 +1,5 @@
 import { TestingModule, Test } from '@nestjs/testing'
-import { plainToInstance } from 'class-transformer'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { validateSync } from 'class-validator'
 import { ConfigModule } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
@@ -17,6 +15,7 @@ import {
 } from '@/tests/utils/vitest-helpers'
 import { ScenesServiceModule } from '@/src/contexts/scenes/application/scenes.module'
 import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
+import { generateValidatorError } from '@/tests/utils/helper-functions'
 import { seedDb } from '@/tests/utils/seed'
 
 describe('POST: Create Scene', () => {
@@ -72,12 +71,24 @@ describe('POST: Create Scene', () => {
   })
 
   it('should reject invalid body', async () => {
-    const result = plainToInstance(CreateSceneRequestDto, {})
-    const errors = validateSync(result)
-    expect(errors.length).toBe(2)
-    expect(errors[0].constraints).toEqual({
-      isInt: 'movieId must be an integer number',
-      isPositive: 'movieId must be a positive number',
+    const result = generateValidatorError(CreateSceneRequestDto, {})
+    expect(result).toEqual({
+      detail: [
+        {
+          movieId: {
+            isInt: 'movieId must be an integer number',
+            isPositive: 'movieId must be a positive number',
+          },
+        },
+        {
+          name: {
+            isLength: 'name must be longer than or equal to 1 characters',
+            isString: 'name must be a string',
+          },
+        },
+      ],
+      message: 'One or more fields were invalid',
+      statusCode: 400,
     })
   })
 })

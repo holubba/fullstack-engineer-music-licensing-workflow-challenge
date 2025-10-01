@@ -1,7 +1,5 @@
 import { TestingModule, Test } from '@nestjs/testing'
-import { plainToInstance } from 'class-transformer'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { validateSync } from 'class-validator'
 import { ConfigModule } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
@@ -16,6 +14,7 @@ import {
 } from '@/tests/utils/vitest-helpers'
 import { TracksServiceModule } from '@/src/contexts/tracks/application/tracks.module'
 import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
+import { generateValidatorError } from '@/tests/utils/helper-functions'
 import { seedDb } from '@/tests/utils/seed'
 
 describe('GET: Get Track by ID', () => {
@@ -86,13 +85,19 @@ describe('GET: Get Track by ID', () => {
   })
 
   it('should reject invalid params', async () => {
-    const result = plainToInstance(GetTrackByIdRequestDto, {})
-    const errors = validateSync(result)
-    expect(errors.length).toBe(1)
-    expect(errors[0].constraints).toEqual({
-      isInt: 'id must be an integer number',
-      isNotEmpty: 'id should not be empty',
-      isPositive: 'id must be a positive number',
+    const result = generateValidatorError(GetTrackByIdRequestDto, {})
+    expect(result).toEqual({
+      detail: [
+        {
+          id: {
+            isInt: 'id must be an integer number',
+            isNotEmpty: 'id should not be empty',
+            isPositive: 'id must be a positive number',
+          },
+        },
+      ],
+      message: 'One or more fields were invalid',
+      statusCode: 400,
     })
   })
 })

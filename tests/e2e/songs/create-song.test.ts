@@ -1,7 +1,5 @@
 import { TestingModule, Test } from '@nestjs/testing'
-import { plainToInstance } from 'class-transformer'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { validateSync } from 'class-validator'
 import { ConfigModule } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
@@ -16,6 +14,7 @@ import {
 } from '@/tests/utils/vitest-helpers'
 import { SongsServiceModule } from '@/src/contexts/songs/application/songs.module'
 import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
+import { generateValidatorError } from '@/tests/utils/helper-functions'
 import { seedDb } from '@/tests/utils/seed'
 
 describe('POST: Create Song', () => {
@@ -76,13 +75,32 @@ describe('POST: Create Song', () => {
   })
 
   it('should return dto errors', async () => {
-    const result = plainToInstance(CreateSongRequestDto, {})
-    const errors = validateSync(result)
-    expect(errors.length).toBe(3)
-    expect(errors[0].constraints).toEqual({
-      isLength: 'name must be longer than or equal to 1 characters',
-      isNotEmpty: 'name should not be empty',
-      isString: 'name must be a string',
+    const result = generateValidatorError(CreateSongRequestDto, {})
+    expect(result).toEqual({
+      detail: [
+        {
+          name: {
+            isLength: 'name must be longer than or equal to 1 characters',
+            isNotEmpty: 'name should not be empty',
+            isString: 'name must be a string',
+          },
+        },
+        {
+          artistName: {
+            isLength: 'artistName must be longer than or equal to 1 characters',
+            isNotEmpty: 'artistName should not be empty',
+            isString: 'artistName must be a string',
+          },
+        },
+        {
+          duration: {
+            isNotEmpty: 'duration should not be empty',
+            isString: 'duration must be a string',
+          },
+        },
+      ],
+      message: 'One or more fields were invalid',
+      statusCode: 400,
     })
   })
 })

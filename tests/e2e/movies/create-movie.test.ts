@@ -1,7 +1,5 @@
 import { TestingModule, Test } from '@nestjs/testing'
-import { plainToInstance } from 'class-transformer'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { validateSync } from 'class-validator'
 import { ConfigModule } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
@@ -16,6 +14,7 @@ import {
 } from '@/tests/utils/vitest-helpers'
 import { MoviesServiceModule } from '@/src/contexts/movies/application/movies.module'
 import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
+import { generateValidatorError } from '@/tests/utils/helper-functions'
 import { seedDb } from '@/tests/utils/seed'
 
 describe('POST: Create Song', () => {
@@ -71,12 +70,18 @@ describe('POST: Create Song', () => {
   })
 
   it('should return dto errors', async () => {
-    const result = plainToInstance(CreateMovieRequestDto, {})
-    const errors = validateSync(result)
-    expect(errors.length).toBe(1)
-    expect(errors[0].constraints).toEqual({
-      isNotEmpty: 'name should not be empty',
-      isString: 'name must be a string',
+    const result = generateValidatorError(CreateMovieRequestDto, {})
+    expect(result).toEqual({
+      detail: [
+        {
+          name: {
+            isNotEmpty: 'name should not be empty',
+            isString: 'name must be a string',
+          },
+        },
+      ],
+      message: 'One or more fields were invalid',
+      statusCode: 400,
     })
   })
 })

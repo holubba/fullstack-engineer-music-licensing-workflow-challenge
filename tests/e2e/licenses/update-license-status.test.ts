@@ -1,7 +1,5 @@
 import { TestingModule, Test } from '@nestjs/testing'
-import { plainToInstance } from 'class-transformer'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { validateSync } from 'class-validator'
 import { ConfigModule } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
@@ -9,6 +7,10 @@ import { UpdateLicenseStatusParamsDto } from '@/src/contexts/licenses/infrastruc
 import { UpdateLicenseStatusRequestDto } from '@/src/contexts/licenses/infrastructure/controllers/dtos/requests/update-license-status.dto'
 import { UpdateLicenseByIdResponseDto } from '@/src/contexts/licenses/infrastructure/controllers/dtos/responses/update-license.dto'
 import { LicensesRespositoryModule } from '@/src/contexts/licenses/infrastructure/repositories/licenses.module'
+import {
+  generateTransitionErrorMessage,
+  generateValidatorError,
+} from '@/tests/utils/helper-functions'
 import { LicensesController } from '@/src/contexts/licenses/infrastructure/controllers/licenses.controller'
 import {
   TestTypeOrmConfigModule,
@@ -18,7 +20,6 @@ import {
 import { LicenseHistory } from '@/src/contexts/license-history/domain/license-history.entity'
 import { LicensesServiceModule } from '@/src/contexts/licenses/application/licenses.module'
 import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
-import { generateTransitionErrorMessage } from '@/tests/utils/helper-functions'
 import { Licenses } from '@/src/contexts/licenses/domain/licenses.entity'
 import { LicenseStatus } from '@/src/app/database/types'
 import { seedDb } from '@/tests/utils/seed'
@@ -416,26 +417,38 @@ describe('PATCH: License status', () => {
   )
 
   it('should reject invalid status', async () => {
-    const result = plainToInstance(UpdateLicenseStatusRequestDto, {
+    const result = generateValidatorError(UpdateLicenseStatusRequestDto, {
       status: 'pepe' as LicenseStatus,
     })
-    const errors = validateSync(result)
-    expect(errors.length).toBe(1)
-    expect(errors[0].constraints).toEqual({
-      isEnum:
-        'status must be a valid enum value: pending, negotiating, approved, rejected, expired',
+    expect(result).toEqual({
+      detail: [
+        {
+          status: {
+            isEnum:
+              'status must be a valid enum value: pending, negotiating, approved, rejected, expired',
+          },
+        },
+      ],
+      message: 'One or more fields were invalid',
+      statusCode: 400,
     })
   })
 
   it('should reject invalid id', async () => {
-    const result = plainToInstance(UpdateLicenseStatusParamsDto, {
+    const result = generateValidatorError(UpdateLicenseStatusParamsDto, {
       id: 'pepe',
     })
-    const errors = validateSync(result)
-    expect(errors.length).toBe(1)
-    expect(errors[0].constraints).toEqual({
-      isInt: 'id must be an integer number',
-      isPositive: 'id must be a positive number',
+    expect(result).toEqual({
+      detail: [
+        {
+          id: {
+            isInt: 'id must be an integer number',
+            isPositive: 'id must be a positive number',
+          },
+        },
+      ],
+      message: 'One or more fields were invalid',
+      statusCode: 400,
     })
   })
 })

@@ -41,6 +41,10 @@ export class ErrorResponseNormalizerFilter implements ExceptionFilter {
   }
 
   private getReasons(error: HttpException | ApplicationError) {
+    if (error instanceof ApplicationError) {
+      return error.getReasonsDetail()
+    }
+
     if (!(error instanceof BadRequestException)) {
       return
     }

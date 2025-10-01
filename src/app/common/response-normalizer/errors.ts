@@ -1,4 +1,10 @@
 export const APPLICATION_ERRORS = {
+  INPUT: {
+    INVALID_INPUT_ERROR: {
+      message: 'One or more fields were invalid',
+      statusCode: 400,
+    },
+  },
   MOVIES: {
     NOT_FOUND_ERROR: {
       message: 'The movie with the specified ID was not found in the database.',

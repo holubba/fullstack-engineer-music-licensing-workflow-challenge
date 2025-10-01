@@ -1,7 +1,5 @@
 import { TestingModule, Test } from '@nestjs/testing'
-import { plainToInstance } from 'class-transformer'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { validateSync } from 'class-validator'
 import { ConfigModule } from '@nestjs/config'
 import { DataSource } from 'typeorm'
 
@@ -16,6 +14,7 @@ import {
 } from '@/tests/utils/vitest-helpers'
 import { TracksServiceModule } from '@/src/contexts/tracks/application/tracks.module'
 import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
+import { generateValidatorError } from '@/tests/utils/helper-functions'
 import { seedDb } from '@/tests/utils/seed'
 
 describe('POST: Create Track', () => {
@@ -182,13 +181,41 @@ describe('POST: Create Track', () => {
   })
 
   it('should reject invalid body', async () => {
-    const result = plainToInstance(CreateTrackRequestDto, {})
-    const errors = validateSync(result)
-    expect(errors.length).toBe(5)
-    expect(errors[0].constraints).toEqual({
-      isInt: 'sceneId must be an integer number',
-      isNotEmpty: 'sceneId should not be empty',
-      isPositive: 'sceneId must be a positive number',
+    const result = generateValidatorError(CreateTrackRequestDto, {})
+    expect(result).toEqual({
+      detail: [
+        {
+          sceneId: {
+            isInt: 'sceneId must be an integer number',
+            isNotEmpty: 'sceneId should not be empty',
+            isPositive: 'sceneId must be a positive number',
+          },
+        },
+        {
+          songId: {
+            isInt: 'songId must be an integer number',
+            isNotEmpty: 'songId should not be empty',
+            isPositive: 'songId must be a positive number',
+          },
+        },
+        {
+          startTime: {
+            isNotEmpty: 'startTime should not be empty',
+          },
+        },
+        {
+          endTime: {
+            isNotEmpty: 'endTime should not be empty',
+          },
+        },
+        {
+          rightsHolder: {
+            isNotEmpty: 'rightsHolder should not be empty',
+          },
+        },
+      ],
+      message: 'One or more fields were invalid',
+      statusCode: 400,
     })
   })
 })
