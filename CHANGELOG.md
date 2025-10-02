@@ -1,5 +1,13 @@
 # Changelog
 ---
+## [1.3.1](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/compare/v1.3.1..v1.3.0) - 2025-10-02
+
+### 🐛 Bug Fixes
+
+- modified error body to make it more declarative. - ([f7ac89b](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/commits/f7ac89b3b1734ea5741d98aa986a8eb7903b7105)) - holubba
+- fixed error code displayed in swagger docs and added 409 status code docs - ([91aad6f](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/commits/91aad6f1c9ac01c37e3e3702535bd06fa0b0a09f)) - holubba
+
+---
 ## [1.3.0](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/compare/v1.3.0..v1.2.0) - 2025-10-01
 
 ### ⛰️  Features
