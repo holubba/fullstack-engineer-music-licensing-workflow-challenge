@@ -18,12 +18,12 @@ export class SongsController {
     dataDto: CreateSongResponseDto,
     isPaginated: false,
     httpMethod: HttpMethods.post,
-    errorResponseCodes: [400],
+    errorResponseCodes: [400, 409],
     tags: TAGS.SONGS,
     description:
       'Creates a new song in the system. \n\n' +
       'This endpoint stores the provided song details and returns the created song. \n\n' +
-      'If a song with the same identifier already exists, a 409 Conflict error will be returned. \n\n',
+      'If a song with the same identifier already exists, a 400 error will be returned. \n\n',
     summary: 'Create Song',
   })
   @Endpoint({

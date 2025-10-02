@@ -63,7 +63,7 @@ export class MoviesController {
     dataDto: CreateMovieResponseDto,
     isPaginated: false,
     httpMethod: HttpMethods.post,
-    errorResponseCodes: [],
+    errorResponseCodes: [400, 409],
     tags: TAGS.MOVIES,
     description: 'Creates a new movie record',
     summary: 'Create a movie',

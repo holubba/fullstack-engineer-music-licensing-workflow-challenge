@@ -21,7 +21,7 @@ export class TracksController {
     dataDto: CreateTrackResponseDto,
     isPaginated: false,
     httpMethod: HttpMethods.post,
-    errorResponseCodes: [400, 401, 403, 404],
+    errorResponseCodes: [400, 404],
     tags: TAGS.TRACKS,
     description: 'Creates a new track and associates it to a song \n\n',
     summary: 'Creates a track and associates it to a song',

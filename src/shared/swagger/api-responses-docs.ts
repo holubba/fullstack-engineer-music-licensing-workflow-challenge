@@ -99,6 +99,7 @@ export enum ResponseCodes {
   Unauthorized = 401,
   Forbidden = 403,
   NotFound = 404,
+  Conflict = 409,
   ServerError = 500,
 }
 
@@ -118,7 +119,7 @@ export const buildResponseCodeExamples = (
             example: {
               error: {
                 message: 'Bad Request Exception',
-                status: 400,
+                status: ResponseCodes.BadRequest,
                 validationErrors: [
                   {
                     name: {
@@ -151,7 +152,7 @@ export const buildResponseCodeExamples = (
             example: {
               error: {
                 message: 'Unauthorized',
-                status: 401,
+                status: ResponseCodes.Unauthorized,
               },
             },
             schema: errorSchema,
@@ -166,7 +167,7 @@ export const buildResponseCodeExamples = (
             example: {
               error: {
                 message: 'Forbidden resource',
-                status: 403,
+                status: ResponseCodes.Forbidden,
               },
             },
             schema: errorSchema,
@@ -182,7 +183,23 @@ export const buildResponseCodeExamples = (
               error: {
                 message:
                   'The movie with the specified ID was not found in the database',
-                status: 404,
+                status: ResponseCodes.NotFound,
+              },
+            },
+            schema: errorSchema,
+          }),
+        )
+        break
+      }
+      case ResponseCodes.Conflict: {
+        decorators.push(
+          ApiNotFoundResponse({
+            description: 'Resource found',
+            example: {
+              error: {
+                message:
+                  'The movie with the specified name was found in the database',
+                status: ResponseCodes.Conflict,
               },
             },
             schema: errorSchema,
@@ -197,7 +214,7 @@ export const buildResponseCodeExamples = (
             example: {
               error: {
                 message: 'Internal Server Error',
-                status: 500,
+                status: ResponseCodes.ServerError,
               },
             },
             schema: errorSchema,

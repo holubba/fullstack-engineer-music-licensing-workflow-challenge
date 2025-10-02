@@ -12,7 +12,7 @@ export const APPLICATION_ERRORS = {
     },
     FOUND_ERROR: {
       message: 'The movie with the specified name was found in the database.',
-      statusCode: 400,
+      statusCode: 409,
     },
   },
   SONGS: {
@@ -22,7 +22,7 @@ export const APPLICATION_ERRORS = {
     },
     FOUND_ERROR: {
       message: 'The song with the specified name was found in the database.',
-      statusCode: 400,
+      statusCode: 409,
     },
   },
   SCENES: {
