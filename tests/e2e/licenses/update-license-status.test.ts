@@ -421,7 +421,7 @@ describe('PATCH: License status', () => {
       status: 'pepe' as LicenseStatus,
     })
     expect(result).toEqual({
-      detail: [
+      validationErrors: [
         {
           status: {
             isEnum:
@@ -439,7 +439,7 @@ describe('PATCH: License status', () => {
       id: 'pepe',
     })
     expect(result).toEqual({
-      detail: [
+      validationErrors: [
         {
           id: {
             isInt: 'id must be an integer number',

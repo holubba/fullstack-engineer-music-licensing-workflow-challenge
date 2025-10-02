@@ -36,7 +36,7 @@ export class ErrorResponseNormalizerFilter implements ExceptionFilter {
     return {
       message: error.message,
       status: error.getStatus(),
-      reasons: this.getReasons(error),
+      validationErrors: this.getReasons(error),
     }
   }
 

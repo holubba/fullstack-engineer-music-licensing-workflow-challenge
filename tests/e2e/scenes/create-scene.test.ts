@@ -73,7 +73,7 @@ describe('POST: Create Scene', () => {
   it('should reject invalid body', async () => {
     const result = generateValidatorError(CreateSceneRequestDto, {})
     expect(result).toEqual({
-      detail: [
+      validationErrors: [
         {
           movieId: {
             isInt: 'movieId must be an integer number',

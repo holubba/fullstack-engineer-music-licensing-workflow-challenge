@@ -72,7 +72,7 @@ describe('POST: Create Song', () => {
   it('should return dto errors', async () => {
     const result = generateValidatorError(CreateMovieRequestDto, {})
     expect(result).toEqual({
-      detail: [
+      validationErrors: [
         {
           name: {
             isNotEmpty: 'name should not be empty',

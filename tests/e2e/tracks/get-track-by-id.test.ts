@@ -87,7 +87,7 @@ describe('GET: Get Track by ID', () => {
   it('should reject invalid params', async () => {
     const result = generateValidatorError(GetTrackByIdRequestDto, {})
     expect(result).toEqual({
-      detail: [
+      validationErrors: [
         {
           id: {
             isInt: 'id must be an integer number',

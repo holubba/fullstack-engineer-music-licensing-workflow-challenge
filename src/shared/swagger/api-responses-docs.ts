@@ -119,7 +119,24 @@ export const buildResponseCodeExamples = (
               error: {
                 message: 'Bad Request Exception',
                 status: 400,
-                reasons: ['Movie already exists'],
+                validationErrors: [
+                  {
+                    name: {
+                      isLength:
+                        'name must be longer than or equal to 1 characters',
+                      isNotEmpty: 'name should not be empty',
+                      isString: 'name must be a string',
+                    },
+                  },
+                  {
+                    artistName: {
+                      isLength:
+                        'artistName must be longer than or equal to 1 characters',
+                      isNotEmpty: 'artistName should not be empty',
+                      isString: 'artistName must be a string',
+                    },
+                  },
+                ],
               },
             },
             schema: errorBadRequestSchema,

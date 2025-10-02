@@ -61,7 +61,7 @@ describe('GET/:id Movie', () => {
       id: 'pepe',
     })
     expect(result).toEqual({
-      detail: [
+      validationErrors: [
         {
           id: {
             isInt: 'id must be an integer number',

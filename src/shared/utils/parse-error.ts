@@ -1,7 +1,7 @@
 import { ValidationError } from 'class-validator'
 
 export type ParsedError = {
-  [field: string]: { [type: string]: unknown }
+  [field: string]: { [type: string]: string }
 }
 
 export function parseError(

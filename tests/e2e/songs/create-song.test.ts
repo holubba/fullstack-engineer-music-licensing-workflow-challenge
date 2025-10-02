@@ -77,7 +77,7 @@ describe('POST: Create Song', () => {
   it('should return dto errors', async () => {
     const result = generateValidatorError(CreateSongRequestDto, {})
     expect(result).toEqual({
-      detail: [
+      validationErrors: [
         {
           name: {
             isLength: 'name must be longer than or equal to 1 characters',

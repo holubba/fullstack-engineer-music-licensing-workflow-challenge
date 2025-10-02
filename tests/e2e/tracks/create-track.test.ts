@@ -183,7 +183,7 @@ describe('POST: Create Track', () => {
   it('should reject invalid body', async () => {
     const result = generateValidatorError(CreateTrackRequestDto, {})
     expect(result).toEqual({
-      detail: [
+      validationErrors: [
         {
           sceneId: {
             isInt: 'sceneId must be an integer number',

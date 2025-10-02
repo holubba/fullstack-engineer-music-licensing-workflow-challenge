@@ -15,19 +15,25 @@ export class BasePaginatedResponseDto<T> {
 }
 
 export const errorBadRequestSchema = {
+  type: 'object',
   properties: {
     error: {
       type: 'object',
       properties: {
         message: { type: 'string' },
         status: { type: 'integer' },
-        reasons: {
+        validationErrors: {
           type: 'array',
-          items: { type: 'string' },
+          items: {
+            type: 'object',
+            additionalProperties: { type: 'string' },
+          },
         },
       },
+      required: ['message', 'status'],
     },
   },
+  required: ['error'],
 }
 
 export const errorSchema = {

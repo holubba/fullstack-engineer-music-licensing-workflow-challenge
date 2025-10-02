@@ -23,6 +23,6 @@ export function generateValidatorError<T extends object>(
   const errors = validateSync(instance)
   return {
     ...APPLICATION_ERRORS.INPUT.INVALID_INPUT_ERROR,
-    detail: parseError(errors),
+    validationErrors: parseError(errors),
   }
 }
