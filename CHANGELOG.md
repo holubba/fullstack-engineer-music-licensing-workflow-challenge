@@ -1,5 +1,20 @@
 # Changelog
 ---
+## [1.3.2](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/compare/v1.3.2..v1.3.1) - 2025-10-03
+
+### 🐛 Bug Fixes
+
+- updated GET:/movies endpoint to return paginated data, also updated docs and tests - ([7134b12](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/commits/7134b1241065314b480d0799ed110ff4be031857)) - holubba
+
+### 🚜 Refactor
+
+- added version to release script and swagger - ([3c19835](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/commits/3c19835c13e3f900d52b2c6bba641c235918a0ea)) - holubba
+
+### ⚙️ Miscellaneous Tasks
+
+- **(setup)** updated package-json and froze dependencies versions - ([bc89781](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/commits/bc89781f65683f4bc3cc2c76f46d1753d885ec63)) - holubba
+
+---
 ## [1.3.1](https://github.com/holubba/fullstack-engineer-music-licensing-workflow-challenge/compare/v1.3.1..v1.3.0) - 2025-10-02
 
 ### 🐛 Bug Fixes
