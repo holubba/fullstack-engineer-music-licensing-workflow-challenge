@@ -6,6 +6,7 @@ NEW_SEMVERSION=$(npx git-cliff -r ./ --bumped-version -c $CHANGELOG_TEMPLATE_PAT
 NEW_VERSION="${NEW_SEMVERSION#v}"
 
 perl -i -pe "s/\"version\":\\s*\"[0-9]+\\.[0-9]+\\.[0-9]+\"/\"version\": \"$NEW_VERSION\"/" ./package.json
+perl -i -pe "s/const API_VERSION = '([0-9]+\.[0-9]+\.[0-9]+)'/const API_VERSION = '$NEW_VERSION'/" ./src/app/setup/swagger.ts
 
 git add ./package.json
 git commit -m "chore(release): $NEW_VERSION"
