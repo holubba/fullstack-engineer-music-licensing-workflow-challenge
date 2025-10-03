@@ -6,7 +6,6 @@ import { initializeTransactionalContext } from 'typeorm-transactional'
 import { NestFactory } from '@nestjs/core'
 
 import {
-  setupInterceptors,
   getEnvVariables,
   setupFilters,
   setupSwagger,
@@ -27,7 +26,6 @@ async function bootstrap() {
 
   setupCORS(app)
   setupPrefix(app)
-  setupInterceptors(app)
   setupFilters(app)
   setupPipes(app)
 

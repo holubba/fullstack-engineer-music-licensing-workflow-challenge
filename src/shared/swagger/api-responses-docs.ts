@@ -30,7 +30,7 @@ export const ApiOkResponsePaginated = <DataDto extends Type<unknown>>(
           { $ref: getSchemaPath(BasePaginatedResponseDto) },
           {
             properties: {
-              data: {
+              items: {
                 type: 'array',
                 items: { $ref: getSchemaPath(dataDto) },
               },

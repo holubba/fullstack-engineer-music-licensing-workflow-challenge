@@ -2,6 +2,8 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Injectable } from '@nestjs/common'
 import { Repository } from 'typeorm'
 
+import { Order } from '@/src/shared/pagination/page-options'
+
 import { MoviesRepository } from '../../domain/movies.repository.interface'
 import { Movies } from '../../domain/movies.entity'
 
@@ -28,8 +30,17 @@ export class MoviesRepositoryImpl implements MoviesRepository {
     })
   }
 
-  async findAll(): Promise<Movies[]> {
-    return await this.moviesRepository.find({
+  async findAll(
+    limit: number,
+    offset: number,
+    order: Order,
+  ): Promise<[Movies[], count: number]> {
+    return await this.moviesRepository.findAndCount({
+      take: limit,
+      skip: offset,
+      order: {
+        createdAt: order,
+      },
       relations: {
         scenes: {
           tracks: {

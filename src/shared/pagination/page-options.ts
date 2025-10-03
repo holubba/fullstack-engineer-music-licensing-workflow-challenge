@@ -10,7 +10,7 @@ export class PageOptionsDto {
   @ApiPropertyOptional({ enum: Order, default: Order.ASC })
   @IsEnum(Order)
   @IsOptional()
-  readonly order?: Order = Order.ASC
+  readonly order: Order = Order.ASC
 
   @ApiPropertyOptional({
     minimum: 1,
@@ -20,7 +20,7 @@ export class PageOptionsDto {
   @IsInt()
   @Min(1)
   @IsOptional()
-  readonly limit?: number = 8
+  readonly limit: number = 10
 
   @ApiPropertyOptional({
     minimum: 0,
@@ -31,5 +31,5 @@ export class PageOptionsDto {
   @IsInt()
   @Min(0)
   @IsOptional()
-  readonly offset?: number = 0
+  readonly offset: number = 0
 }

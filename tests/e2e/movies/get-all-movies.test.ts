@@ -14,6 +14,7 @@ import { MoviesRespositoryModule } from '@/src/contexts/movies/infrastructure/re
 import { MoviesController } from '@/src/contexts/movies/infrastructure/controllers/movies.controller'
 import { MoviesServiceModule } from '@/src/contexts/movies/application/movies.module'
 import { Movies } from '@/src/contexts/movies/domain/movies.entity'
+import { Order } from '@/src/shared/pagination/page-options'
 import { seedDb } from '@/tests/utils/seed'
 
 describe('GET: Movies', () => {
@@ -43,9 +44,16 @@ describe('GET: Movies', () => {
   })
 
   it('should return an array of movies', async () => {
-    const result = await controller.getMovies()
+    const result = await controller.getMovies({
+      limit: 10,
+      offset: 0,
+      order: Order.ASC,
+    })
     expect(result).toBeDefined()
     testPaginatedDto(GetMoviesResponseDto, result, {
+      count: 2,
+      currentPage: 1,
+      pages: 1,
       items: [
         {
           createdAt: expect.any(Date),
@@ -65,8 +73,17 @@ describe('GET: Movies', () => {
 
   it('should return an empty array if we delete all the movies beforehand', async () => {
     await db.getRepository(Movies).softDelete({ id: In([1, 2]) })
-    const result = await controller.getMovies()
-    expect(result).toEqual([])
+    const result = await controller.getMovies({
+      limit: 10,
+      offset: 0,
+      order: Order.ASC,
+    })
+    expect(result).toEqual({
+      count: 0,
+      currentPage: 1,
+      items: [],
+      pages: 1,
+    })
     testDto(GetMoviesResponseDto, result)
   })
 })

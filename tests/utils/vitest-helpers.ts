@@ -9,6 +9,8 @@ import { ClassConstructor, plainToInstance } from 'class-transformer'
 import { DataSourceOptions, DataSource } from 'typeorm'
 import { Module } from '@nestjs/common'
 
+import { PageDto } from '@/src/shared/pagination/page-dto'
+
 import { MINIMAL_TEST_DATA_SOURCE, TEST_DATA_SOURCE } from './data-source'
 
 export async function mockDB() {
@@ -36,12 +38,13 @@ export function testDto(dto: ClassConstructor<object>, payload: unknown) {
 }
 
 export function testPaginatedDto(
-  dto: ClassConstructor<object>,
-  payload: Array<unknown>,
-  expectedResult: unknown,
+  dto: ClassConstructor<unknown>,
+  payload: PageDto<unknown>,
+  expectedResult: any,
 ) {
   expect({
-    items: payload.map(item =>
+    ...payload,
+    items: payload.items.map(item =>
       plainToInstance(dto, item, {
         excludeExtraneousValues: true,
         exposeUnsetFields: false,

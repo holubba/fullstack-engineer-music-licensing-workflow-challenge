@@ -1,7 +1,6 @@
 export * from './cors'
 export * from './env'
 export * from './filters'
-export * from './interceptors'
 export * from './pipes'
 export * from './prefix'
 export * from './swagger'

@@ -16,13 +16,13 @@ export interface ClassConstructor<T = unknown> {
  * Interceptor that serializes outgoing responses using a DTO.
  * Can handle single objects or paginated results.
  */
-export class SerializeInterceptor implements NestInterceptor {
+export class SerializeInterceptor<T> implements NestInterceptor {
   /**
    * @param dto - The DTO class to serialize data into.
    * @param isPaginated - Whether the response is a paginated result.
    */
   constructor(
-    private dto: ClassConstructor<unknown>,
+    private dto: ClassConstructor<T>,
     private isPaginated: boolean = false,
   ) {}
 
@@ -32,16 +32,16 @@ export class SerializeInterceptor implements NestInterceptor {
    * @param handler - Call handler for the request.
    * @returns Observable with transformed data.
    */
-  intercept<T>(
+  intercept(
     _: ExecutionContext,
     handler: CallHandler,
-  ): Observable<T | PageSerializeDto<T>> {
+  ): Observable<{ data: T } | PageSerializeDto<T>> {
     if (this.isPaginated) {
       return handler.handle().pipe(
         map((data: PageDto<unknown>) => {
-          const transformedItems = data.items.map(item => {
-            return this.transformData<T>(item)
-          })
+          const transformedItems = data.items.map(item =>
+            this.transformData(item),
+          )
 
           return new PageSerializeDto(
             transformedItems,
@@ -54,14 +54,22 @@ export class SerializeInterceptor implements NestInterceptor {
     }
 
     return handler.handle().pipe(
-      map((data: unknown) => {
-        return this.transformData<T>(data)
+      map((raw: unknown) => {
+        const transformedData = this.transformData(raw)
+        return {
+          data: transformedData,
+        }
       }),
     )
   }
 
-  private transformData<T>(data: unknown): T {
-    return plainToInstance<T, unknown>(this.dto as ClassConstructor<T>, data, {
+  /**
+   * Transforms raw data into an instance of the DTO.
+   * @param data - Raw data to transform.
+   * @returns An instance of the DTO type.
+   */
+  private transformData(data: unknown): T {
+    return plainToInstance(this.dto, data, {
       excludeExtraneousValues: true,
       exposeUnsetFields: false,
     })

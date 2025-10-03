@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common'
 
 import { APPLICATION_ERRORS } from '@/src/app/common/response-normalizer/errors'
+import { Order } from '@/src/shared/pagination/page-options'
 import { throwError } from '@/src/shared/utils/throw-error'
 
 import { GetMovieByIdRequestDto } from '../infrastructure/controllers/dtos/requests/get-movie-by-id.dto'
@@ -22,8 +23,20 @@ export class MoviesService {
     return movie
   }
 
-  async findAll(): Promise<Movies[]> {
-    return await this.moviesRepository.findAll()
+  async findAll(
+    limit: number,
+    offset: number,
+    order: Order,
+  ): Promise<{ movies: Movies[]; count: number }> {
+    const [movies, count] = await this.moviesRepository.findAll(
+      limit,
+      offset,
+      order,
+    )
+    return {
+      movies,
+      count,
+    }
   }
 
   async create({ name }: { name: string }): Promise<Movies> {

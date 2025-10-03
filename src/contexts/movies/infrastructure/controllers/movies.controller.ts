@@ -1,9 +1,11 @@
-import { Controller, Param, Body } from '@nestjs/common'
+import { Controller, Param, Query, Body } from '@nestjs/common'
 
 import { SwaggerDocs } from '@/src/shared/decorators/swagger.decorator'
 import { Endpoint } from '@/src/shared/decorators/endpoint.decorator'
 import { HttpMethods } from '@/src/shared/swagger/api-responses-docs'
+import { PageOptionsDto } from '@/src/shared/pagination/page-options'
 import { CONTROLLERS } from '@/src/app/constants/api.constants'
+import { PageDto } from '@/src/shared/pagination/page-dto'
 import { TAGS } from '@/src/app/constants/docs.contants'
 
 import { CreateMovieResponseDto } from './dtos/responses/create-movie.response.dto'
@@ -47,16 +49,29 @@ export class MoviesController {
     errorResponseCodes: [],
     tags: TAGS.MOVIES,
     description:
-      'Retrieves all movies. \n\n' +
-      'This should be paginated but due to the time constraints of the challenge and it not being enforced in the description I left it like this',
+      'Retrieves all movies.\n\n' +
+      'This endpoint returns a paginated list of movies. You can control pagination with the `limit` and `offset` query parameters.\n' +
+      'The `order` parameter sorts the results by the movie creation date (`createdAt`).\n\n' +
+      'The response includes:\n' +
+      '- `items`: an array of movies for the current page\n' +
+      '- `count`: total number of movies available\n' +
+      '- Pagination metadata (`pages`, `currentPage`) is included automatically.',
     summary: 'Retrieves all movies',
   })
   @Endpoint({
     responseDto: GetMoviesResponseDto,
     operation: HttpMethods.get,
+    isPaginated: true,
   })
-  async getMovies(): Promise<Movies[]> {
-    return await this.moviesService.findAll()
+  async getMovies(
+    @Query() { limit, offset, order }: PageOptionsDto,
+  ): Promise<PageDto<Movies>> {
+    const { movies: items, count } = await this.moviesService.findAll(
+      limit,
+      offset,
+      order,
+    )
+    return new PageDto(items, count, limit, offset)
   }
 
   @SwaggerDocs({
